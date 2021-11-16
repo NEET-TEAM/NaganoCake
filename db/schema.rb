@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20211116093410) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.string   "name"
     t.string   "image_id"
     t.text     "explanation"
     t.integer  "price"

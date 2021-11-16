@@ -5,6 +5,8 @@ class ItemsController < ApplicationController
     end
     
     def create
+        @item = Item.new(item.params)
+        @item.save
     end
     
     def index
