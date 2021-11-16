@@ -1,18 +1,20 @@
 class ItemsController < ApplicationController
     
     def new
-        @item = Item.new
+      @item = Item.new
     end
     
     def create
-        @item = Item.new(item.params)
-        @item.save
+      @item = Item.new(item.params)
+      @item.save
     end
     
     def index
     end
     
     def show
+      @item  = Item.find[:id]
+      @image = @item.image.page(params[:id]).reverse_order
     end
     
     def edit
@@ -22,5 +24,7 @@ class ItemsController < ApplicationController
     end
     
     private
-    
+    def item_params
+      params.require(:item).permit(:name, :explanation, :prace)
+    end
 end
