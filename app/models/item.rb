@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
     
     
-    attachment :ima
+    attachment :image
     
 end
