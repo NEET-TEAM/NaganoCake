@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
     end
     
     def index
+      @items = Item.all
     end
     
     def show
@@ -25,6 +26,6 @@ class ItemsController < ApplicationController
     
     private
     def item_params
-      params.require(:item).permit(:name, :explanation, :prace)
+      params.require(:item).permit(:id, :name, :explanation, :prace)
     end
 end
