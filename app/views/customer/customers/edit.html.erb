@@ -4,36 +4,40 @@
   <tbody>
     <tr>
       <th>氏名</th>
-      <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前" %></td>
-      <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
+      <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"名" %></td>
     </tr>
     <tr>
       <th>カナ</th>
-      <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名前" %></td>
-      <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
+      <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
     </tr>
     <tr>
       <th>郵便番号</th>
-      <td><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
       <td></td>
     </tr>
     <tr>
       <th>住所</th>
-      <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所" %></td>
     </tr>
     <tr>
       <th>電話番号</th>
-      <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
       <td></td>
     </tr>
     <tr>
       <th>メール</th>
-      <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"名前" %></td>
+      <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
       <td></td>
     </tr>
   </tbody>
 </table>
-<p>編集内容を保存のリンク</p>
+<div class="form-group">
+  <%= f.submit class: 'btn btn-success' %>
+  編集内容を保存
+</div>
+
 <p>退会するのリンク</p>
 
 <% end %>
