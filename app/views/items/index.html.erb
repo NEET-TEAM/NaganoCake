@@ -12,7 +12,11 @@
     <tbody>
       <%= @items.each do |item| %>
         <tr>
-          <td></td>
+          <td><%= item.id %></td>
+          <td><%= item.name %></td>
+          <td><%= item.prace %>円</td>
+          <td><%= item.genre.name %></td>
+          <td><%= item.sold_out %></td>
         </tr>
       <% end %>
     </tbody>

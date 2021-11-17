@@ -2,11 +2,13 @@ class ItemsController < ApplicationController
     
     def new
       @item = Item.new
+      @genres = Genre.all
     end
     
     def create
       item = Item.new(item.params)
-      item.save
+      @item.save
+      #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
       redirect_to '/'
     end
     
@@ -15,7 +17,7 @@ class ItemsController < ApplicationController
     end
     
     def show
-      @item  = Item.find[:id]
+      @item  = Item.find(params[:id])
       @image = @item.image.page(params[:id]).reverse_order
     end
     
@@ -30,6 +32,6 @@ class ItemsController < ApplicationController
     
     private
     def item_params
-      params.require(:item).permit(:id, :image, :name, :explanation, :prace)
+      params.require(:item).permit(:id, :image, :name, :explanation, :prace, :genre_id, :sold_out,)
     end
 end
