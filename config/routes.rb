@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :customer do
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
   end
 
 
