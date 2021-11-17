@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
-  resources :customers, only: [:show, :edit, :out, :update, :withdraw]
+
+  resources :customers, only: [:show, :edit, :update,]
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
