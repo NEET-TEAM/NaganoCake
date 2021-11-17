@@ -2,11 +2,13 @@ class ItemsController < ApplicationController
     
     def new
       @item = Item.new
+      @genres = Genre.all
     end
     
     def create
       item = Item.new(item.params)
-      item.save
+      @item.save
+      #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
       redirect_to '/'
     end
     
