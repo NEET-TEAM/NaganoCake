@@ -5,8 +5,9 @@ class ItemsController < ApplicationController
     end
     
     def create
-      @item = Item.new(item.params)
-      @item.save
+      item = Item.new(item.params)
+      item.save
+      redirect_to '/'
     end
     
     def index
@@ -21,11 +22,14 @@ class ItemsController < ApplicationController
     def edit
     end
     
-    def uodate
+    def update
+    end
+    
+    def destroy
     end
     
     private
     def item_params
-      params.require(:item).permit(:id, :name, :explanation, :prace)
+      params.require(:item).permit(:id, :image :name, :explanation, :prace)
     end
 end
