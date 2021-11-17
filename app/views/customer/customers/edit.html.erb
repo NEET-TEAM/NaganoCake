@@ -1,4 +1,10 @@
 <h4>会員情報の変更</h4>
+<% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <% @customer.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
 <%= form_with model:@customer, local:true do |f| %>
 <table class = "table">
   <tbody>
