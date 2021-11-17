@@ -1,4 +1,5 @@
 <h4>会員情報の変更</h4>
+<%= form_with model:@customer, local:true do |f| %>
 <table class = "table">
   <tbody>
     <tr>
@@ -34,3 +35,5 @@
 </table>
 <p>編集内容を保存のリンク</p>
 <p>退会するのリンク</p>
+
+<% end %>
