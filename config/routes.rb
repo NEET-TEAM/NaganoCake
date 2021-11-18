@@ -9,12 +9,11 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
-  scope module: :admin do
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :genres, only:[:create, :index, :edit, :update]
-    resources :items
+  namespace :admin do
+   resources :customers, only: [:index, :edit, :update, :show]
+   resources :genres, only: [:index, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update]
   end
-
 
   # 顧客用
   # URL /customer/sign_in ...
