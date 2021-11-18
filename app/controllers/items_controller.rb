@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
       @item = Item.new(item_params)
       @item.save
       #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
-      redirect_to '/'
+      redirect_to '/items'
     end
     
     def index
@@ -18,16 +18,25 @@ class ItemsController < ApplicationController
     
     def show
       @item  = Item.find(params[:id])
-      @image = @item.image.page(params[:id]).reverse_order
+      @image = @item.image
     end
     
     def edit
+      @item = Item.find(params[:id])
     end
     
     def update
+      @item = Item.find(params[:id]) 
+      if @item.update(item_params)
+        redirect_to item_path(@item)
+      else
+        render "edit"
+      end
     end
     
     def destroy
+      @item.destroy
+      redirect_to item_path
     end
     
     private
