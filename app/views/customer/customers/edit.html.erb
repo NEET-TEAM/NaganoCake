@@ -40,10 +40,9 @@
   </tbody>
 </table>
 <div class="form-group">
-  <%= f.submit class: 'btn btn-success' %>
+  <%= f.submit "編集内容を保存", class: "btn btn-primary" %>
   編集内容を保存
 </div>
-
-<p>退会するのリンク</p>
+<%= link_to "退会する", class: "btn btn-primary" %>
 
 <% end %>
