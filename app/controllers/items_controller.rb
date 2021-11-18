@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
     end
     
     def create
-      item = Item.new(item.params)
+      @item = Item.new(item_params)
       @item.save
       #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
       redirect_to '/'
@@ -32,6 +32,6 @@ class ItemsController < ApplicationController
     
     private
     def item_params
-      params.require(:item).permit(:id, :image, :name, :explanation, :prace, :genre_id, :sold_out,)
+      params.require(:item).permit(:image, :name, :explanation, :price, :genre_id, :sold_out)
     end
 end

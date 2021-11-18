@@ -45,11 +45,12 @@ ActiveRecord::Schema.define(version: 2021_11_17_022550) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "image_id"
-    t.text "explanation"
-    t.integer "price"
-    t.boolean "sold_out"
+    t.string "name", null: false
+    t.string "image_id", null: false
+    t.integer "genre_id", null: false
+    t.text "explanation", null: false
+    t.integer "price", null: false
+    t.boolean "sold_out", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
