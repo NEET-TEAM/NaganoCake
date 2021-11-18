@@ -1,5 +1,5 @@
 <h4>会員一覧</h4>
-<tabel class= "table">
+<table class= "table">
   <thead>
     <tr>
       <th>会員ID</th>
@@ -8,11 +8,13 @@
       <th>ステータス</th>
     </tr>
   </thead>
+
   <tbody>
-    <% @customer.each do |customer| %>
+    <% @customers.each do |customer| %>
+    <tr></tr>
     <tr>
       <td><%= customer.id %></td>
-      <td><%= customer.last_name %> <%= customer.first_name %></td>
+      <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer) %></td>
       <td><%= customer.email %></td>
       <td>
         <% if customer.is_deleted == false %>
@@ -23,7 +25,6 @@
       </td>
     </tr>
     <% end %>
+    <%= paginate @customers %>
   </tbody>
 </tabel>
-
-<%= will paginate @user %>

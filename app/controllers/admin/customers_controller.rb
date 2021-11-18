@@ -1,9 +1,7 @@
 class Admin::CustomersController < ApplicationController
 
   def index
-    @customers = Customer.all
-    @customer = @customers.find(params[:id])
-    @user = Customer.paginate(page: params[:page], per_page: 10)
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -17,9 +15,9 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to customer_adomin_path
+      redirect_to admin_customer_path(@customer)
     else
-      render "edit"
+      redirect_to edit_admin_customer_path(@customer)
     end
   end
 

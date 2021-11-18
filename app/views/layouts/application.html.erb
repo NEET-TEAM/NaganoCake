@@ -25,19 +25,19 @@
                 <% if customer_signed_in? %>
 
                   <li class= "nav-item">
-                   <button class="btn btn-default"> <%= link_to "マイページ", customer_path, class: "link" %></button>
+                   <button class="btn btn-default"> <%= link_to "マイページ", admin_customers_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "商品一覧", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "商品一覧", admin_customers_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "カート", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "カート", admin_customers_path, class: "link" %></button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="btn btn-default"><%= link_to "ログアウト", customer_path, method: :delete, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログアウト", admin_customers_path, method: :delete, class: "link" %></button>
                   </li>
 
                 <% elsif admin_signed_in? %>
