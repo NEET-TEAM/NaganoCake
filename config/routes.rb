@@ -21,5 +21,10 @@ Rails.application.routes.draw do
   
   resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
   #addressはcustomersとアソシエーション？
+  scope module: :customer do
+    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
+    
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
