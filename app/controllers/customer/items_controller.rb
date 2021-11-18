@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Customer::ItemsController < ApplicationController
     
     def index
       @items = Item.all
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
       @item  = Item.find(params[:id])
       @image = @item.image
       @genres = Genre.all
-      @cart_items = CartItem.new
+      #@cart_items = CartItem.new
     end
     
   

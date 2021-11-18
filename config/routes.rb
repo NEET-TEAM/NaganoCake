@@ -17,7 +17,15 @@ Rails.application.routes.draw do
   }
   
   resources :genres, only:[:create, :index, :edit, :update]
-  resources :items
-
+  
+  namespace :customer do
+    resources :items, only:[:index, :show]
+  end
+  
+  namespace :admin do
+    resources :items
+  end
+  
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
