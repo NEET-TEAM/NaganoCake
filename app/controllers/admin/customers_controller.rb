@@ -1,8 +1,9 @@
 class Admin::CustomersController < ApplicationController
 
   def index
-    @customer = Customer.find(params[:id])
-    @customers = Customer.paginate(page: params[:page], per_page: 10)
+    @customers = Customer.all
+    @customer = @customers.find(params[:id])
+    @user = Customer.paginate(page: params[:page], per_page: 10)
   end
 
   def show

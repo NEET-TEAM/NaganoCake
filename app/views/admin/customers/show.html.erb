@@ -3,7 +3,7 @@
   <body>
     <tr>
       <td></td>
-      <td><% @customer.customer_id %></td>
+      <td><% @customer.id %></td>
       <td></td>
     </tr>
     <tr>
@@ -50,5 +50,5 @@
   </body>
 </table>
 
-<%= link_to "編集する", edit_customer_admin_path(@customer), class: "btn btn-success" %>
+<%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
 注文履歴一覧リンク

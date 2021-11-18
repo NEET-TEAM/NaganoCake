@@ -11,8 +11,8 @@
   <tbody>
     <% @customer.each do |customer| %>
     <tr>
-      <td><%= customer.customer_id %></td>
-      <td><%= customer.last_name %> <%= @customer.first_name %></td>
+      <td><%= customer.id %></td>
+      <td><%= customer.last_name %> <%= customer.first_name %></td>
       <td><%= customer.email %></td>
       <td>
         <% if customer.is_deleted == false %>
@@ -26,4 +26,4 @@
   </tbody>
 </tabel>
 
-<%= will paginate @customers %>
+<%= will paginate @user %>
