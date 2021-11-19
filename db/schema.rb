@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_18_024332) do
+ActiveRecord::Schema.define(version: 2021_11_19_092452) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2021_11_18_024332) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "customer_id"
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -68,6 +76,29 @@ ActiveRecord::Schema.define(version: 2021_11_18_024332) do
     t.text "explanation", null: false
     t.integer "price", null: false
     t.boolean "sold_out", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "order_histries", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "price", null: false
+    t.integer "quantity", null: false
+    t.integer "production_status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "name", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.integer "total_payment", null: false
+    t.integer "shipping_cost", null: false
+    t.integer "payment", null: false
+    t.integer "order_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
