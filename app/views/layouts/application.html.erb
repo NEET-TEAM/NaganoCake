@@ -49,19 +49,19 @@
                   </li>
 
                   <li class= customers>
-                    <button class="btn btn-default"><%= link_to '会員一覧', adminitems_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '会員一覧', admin_items_path, class: "link" %></button>
                   </li>
 
                   <li class=orders>
-                    <button class="btn btn-default"><%= link_to '注文履歴一覧', items_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '注文履歴一覧', admin_items_path, class: "link" %></button>
                   </li>
 
                   <li class=genres>
-                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', genre_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', admin_genres_path, class: "link" %></button>
                   </li>
 
                   <li class=logout>
-                    <button class="btn btn-default"><%= link_to "ログアウト",items_path, method: :delete, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログアウト",destroy_admin_session_path, method: :delete, class: "link" %></button>
                   </li>
 
                 <% else %>
