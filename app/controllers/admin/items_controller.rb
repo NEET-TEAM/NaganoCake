@@ -9,7 +9,7 @@ class Admin::ItemsController < ApplicationController
       @item = Item.new(item_params)
       @item.save
       #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
-      redirect_to '/items'
+      redirect_to admin_items_path
     end
     
     def index
@@ -28,7 +28,7 @@ class Admin::ItemsController < ApplicationController
     def update
       @item = Item.find(params[:id]) 
       if @item.update(item_params)
-        redirect_to item_path(@item)
+        redirect_to admin_item_path(@item)
       else
         render "edit"
       end
