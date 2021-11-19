@@ -9,6 +9,8 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+    
+    <main class="d-flex flex-column vh-100">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -25,57 +27,58 @@
                 <% if customer_signed_in? %>
 
                   <li class= "nav-item">
-                   <button class="btn btn-default"> <%= link_to "マイページ", admin_customers_path, class: "link" %></button>
+
+                   <button class="btn btn-default"> <%= link_to "マイページ", customer_path(current_customer.id), class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "商品一覧", admin_customers_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "商品一覧", items_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "カート", admin_customers_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "カート", items_path, class: "link" %></button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="btn btn-default"><%= link_to "ログアウト", admin_customers_path, method: :delete, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "link" %></button>
                   </li>
 
                 <% elsif admin_signed_in? %>
                   <li class= items>
-                    <button class="btn btn-default"><%= link_to '商品一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '商品一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class= customers>
-                    <button class="btn btn-default"><%= link_to '会員一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '会員一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class=orders>
-                    <button class="btn btn-default"><%= link_to '注文履歴一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '注文履歴一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class=genres>
-                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', genre_path, class: "link" %></button>
                   </li>
 
                   <li class=logout>
-                    <button class="btn btn-default"><%= link_to "ログアウト",customer_path, method: :delete, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログアウト",items_path, method: :delete, class: "link" %></button>
                   </li>
 
                 <% else %>
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "About", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "About", about_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "商品一覧", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "商品一覧", items_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "新規登録", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "新規登録", new_customer_registration_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "ログイン", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログイン", new_customer_session_path, class: "link" %></button>
                   </li>
                 <% end %>
               </ul>
@@ -86,6 +89,8 @@
 
     <main>
     <%= yield %>
+    </main>
+
     </main>
 
   </body>

@@ -6,5 +6,6 @@ class AddLastNameKanaToCustomers < ActiveRecord::Migration[5.0]
     add_column :customers, :postal_code, :string
     add_column :customers, :address, :string
     add_column :customers, :phone_number, :string
+    
   end
 end
