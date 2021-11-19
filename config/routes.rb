@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
+
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :out, :withdraw]
     
