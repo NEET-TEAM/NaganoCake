@@ -42,23 +42,23 @@
 
                 <% elsif admin_signed_in? %>
                   <li class= items>
-                    <button class="btn btn-default"><%= link_to '商品一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '商品一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class= customers>
-                    <button class="btn btn-default"><%= link_to '会員一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '会員一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class=orders>
-                    <button class="btn btn-default"><%= link_to '注文履歴一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to '注文履歴一覧', items_path, class: "link" %></button>
                   </li>
 
                   <li class=genres>
-                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', genre_path, class: "link" %></button>
                   </li>
 
                   <li class=logout>
-                    <button class="btn btn-default"><%= link_to "ログアウト",customer_path, method: :delete, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログアウト",items_path, method: :delete, class: "link" %></button>
                   </li>
 
                 <% else %>
@@ -71,11 +71,11 @@
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "新規登録", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "新規登録", new_customer_registration_path, class: "link" %></button>
                   </li>
 
                   <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "ログイン", customer_path, class: "link" %></button>
+                    <button class="btn btn-default"><%= link_to "ログイン", new_customer_session_path, class: "link" %></button>
                   </li>
                 <% end %>
               </ul>
