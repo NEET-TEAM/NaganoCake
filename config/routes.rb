@@ -22,16 +22,14 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
   
-  resources :genres, only:[:create, :index, :edit, :update]
   
-  resources :items, only: [:new, :create, :index, :update, :show, :edit, :destroy]
-  
-  resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
-  #addressはcustomersとアソシエーション？
+  namespace :customer do
+    resources :items, only: [:index, :show]
+    resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
+  end
 
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :out, :withdraw]
-    
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

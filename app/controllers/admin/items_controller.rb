@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Customer::ItemsController < ApplicationController
     
     def new
       @item = Item.new
