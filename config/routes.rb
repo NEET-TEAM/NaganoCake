@@ -21,31 +21,19 @@ Rails.application.routes.draw do
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
-<<<<<<< HEAD
 
-=======
-  
-  resources :genres, only:[:create, :index, :edit, :update]
-  
-  resources :items, only: [:new, :create, :index, :update, :show, :edit, :destroy]
-  
-  resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
-  #addressはcustomersとアソシエーション？
->>>>>>> origin/address
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :out, :withdraw]
     
   end
 
-<<<<<<< HEAD
 
   namespace :customer do
     resources :items, only:[:index, :show]
+    resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
   end
 
-  
+   
 
-=======
->>>>>>> origin/address
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
