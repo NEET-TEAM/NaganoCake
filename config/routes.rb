@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
-  
-  
+
   namespace :customer do
     resources :items, only: [:index, :show]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
