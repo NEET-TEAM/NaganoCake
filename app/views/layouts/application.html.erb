@@ -8,7 +8,85 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="Logo navbar-brand p-3" href="/">
+            <div>ながのCake</div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav lists-right">
+
+                <% if customer_signed_in? %>
+
+                  <li class= "nav-item">
+                   <button class="btn btn-default"> <%= link_to "マイページ", admin_customers_path, class: "link" %></button>
+                  </li>
+
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "商品一覧", admin_customers_path, class: "link" %></button>
+                  </li>
+
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "カート", admin_customers_path, class: "link" %></button>
+                  </li>
+
+                  <li class="nav-item">
+                    <button class="btn btn-default"><%= link_to "ログアウト", admin_customers_path, method: :delete, class: "link" %></button>
+                  </li>
+
+                <% elsif admin_signed_in? %>
+                  <li class= items>
+                    <button class="btn btn-default"><%= link_to '商品一覧', customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class= customers>
+                    <button class="btn btn-default"><%= link_to '会員一覧', customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class=orders>
+                    <button class="btn btn-default"><%= link_to '注文履歴一覧', customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class=genres>
+                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class=logout>
+                    <button class="btn btn-default"><%= link_to "ログアウト",customer_path, method: :delete, class: "link" %></button>
+                  </li>
+
+                <% else %>
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "About", customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "商品一覧", customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "新規登録", customer_path, class: "link" %></button>
+                  </li>
+
+                  <li class= "nav-item">
+                    <button class="btn btn-default"><%= link_to "ログイン", customer_path, class: "link" %></button>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
     <%= yield %>
+    </main>
+
   </body>
 </html>

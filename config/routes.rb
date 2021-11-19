@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: 'homes#top'
   get '/about' => 'homes#about'
 
@@ -9,23 +9,29 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
+  namespace :admin do
+   resources :customers, only: [:index, :edit, :update, :show]
+   resources :genres, only: [:index, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update]
+  end
+
   # 顧客用
   # URL /customer/sign_in ...
   devise_for :customer,skip: [:passwords,], controllers: {
   registrations: "customer/registrations",
   sessions: 'customer/sessions'
   }
-  
-  resources :genres, only:[:create, :index, :edit, :update]
-  
+
+  scope module: :customer do
+    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
+  end
+
+
   namespace :customer do
     resources :items, only:[:index, :show]
   end
+
   
-  namespace :admin do
-    resources :items
-  end
-  
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
