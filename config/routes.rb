@@ -22,18 +22,14 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
-
-  scope module: :customer do
-    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
-    
-  end
-
-
   namespace :customer do
-    resources :items, only:[:index, :show]
+    resources :items, only: [:index, :show]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
   end
 
+  scope module: :customer do
+    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
+  end
    
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
