@@ -9,14 +9,14 @@
       <th></th>
     </tr>
   </thead>
-  <% @cart_items.each do |cart_item| %>
   <tbody>
+    <% @cart_items.each do |cart_item| %>
     <tr>
       <td>
-        <%= attachment_image_tag @cart_item, :image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
-        <%= @cart_item.item.name %>
+        <%= attachment_image_tag cart_item.item, :image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
+        <%= cart_item.item.name %>
       </td>
     </tr>
+    <% end %>
   </tbody>
-  <% end %>
 </table>
