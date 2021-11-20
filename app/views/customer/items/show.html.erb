@@ -14,8 +14,20 @@
     
     <div>￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</div>
 
-    
-    <%#<%= link_to "カートに入れる", ,class: "btn-outline-dark" %>
-  
+    <% if customer_signed_in? %>
+      <% if @item.sold_out? %>
+        <%= form_with model: @cart_items do |f| %>
+        <div class="input-group">
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, options_for_select((1..20).to_a), {include_blank: "個数選択"}, {class: "form-control rounded"} %>
+          <%= link_to "カートに入れる", class: "btn-outline-dark" %>
+        </div>
+        <% end %>
+      <% else %>
+        <div class="btn btn-outline-dark">売切れ</div>
+      <% end %>
+    <% else %>
+      <p>ご購入の際は<%= link_to "会員新規登録", new_cutomer_registration_path %>をお願い致します。</p>
+    <% end %>
   </div>
 </div>
