@@ -1,14 +1,11 @@
 class Customer::AddressesController < ApplicationController
 
   
-  def new
-    @address = Address.new
-    @addresses = Address.all
-  end
+
     
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses
   end
   
   def create
