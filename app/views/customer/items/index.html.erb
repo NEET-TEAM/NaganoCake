@@ -1,0 +1,13 @@
+<h2>商品一覧</h2>
+  <table>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= attachment_image_tag item, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300" %></td>
+          <td><%= item.name %></td>
+          <td>￥<%= item.add_tax_price.to_s(:delimited)%></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
