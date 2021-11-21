@@ -1,63 +1,61 @@
 <div class = "container o-8column">
-  <div class = "row">
-    <div class = "col-lg-5">
       <font color = "red"><%= flash[:notice] %></font>
-      <h4><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
-      <table class = "table table-borderless">
+      <div class = "row">
+        <h4 class = "col-4 text-center" style = "background-color:lightgray"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
+      </div>
+      <table class = "table table-borderless" style = "width: 60%;">
         <tbody>
-          <tr>
-            <td>会員ID</td>
-            <td><%= @customer.id %></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">会員ID</td>
+            <td class = "col"><%= @customer.id %></td>
             <td></td>
           </tr>
-          <tr>
-            <td>氏名</td>
-            <td><%= @customer.last_name %></td>
-            <td><%= @customer.first_name %></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">氏名</td>
+            <td class = "col-2"><%= @customer.last_name %></td>
+            <td class = "col-2"><%= @customer.first_name %></td>
           </tr>
-          <tr>
-            <td>フリガナ</td>
-            <td><%= @customer.last_name_kana %></td>
-            <td><%= @customer.first_name_kana %></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">フリガナ</td>
+            <td class = "col-2"><%= @customer.last_name_kana %></td>
+            <td class = "col-2"><%= @customer.first_name_kana %></td>
           </tr>
-          <tr>
-            <td>郵便番号</td>
-            <td><%= @customer.postal_code %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">郵便番号</td>
+            <td class = "col"><%= @customer.postal_code %></td>
+            <td class = "col"></td>
           </tr>
-          <tr>
-            <td>住所</td>
-            <td><%= @customer.address %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">住所</td>
+            <td class = "col"><%= @customer.address %></td>
+            <td class = "col"></td>
           </tr>
-          <tr>
-            <td>電話番号</td>
-            <td><%= @customer.phone_number %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">電話番号</td>
+            <td class = "col"><%= @customer.phone_number %></td>
+            <td class = "col"></td>
           </tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= @customer.email %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">メールアドレス</td>
+            <td class = "col"><%= @customer.email %></td>
+            <td class = "col"></td>
           </tr>
-          <tr>
-            <td>ステータス</td>
-            <td>
+          <tr class = "row">
+            <td class = "col-3" style = "background-color:lightgray">ステータス</td>
+            <td class = "col">
               <% if @customer.is_deleted == false %>
               <font color = "green"><strong>有効</strong></font>
               <% else %>
                <font color = "red"><strong>退会</strong></font>
               <% end %>
             </td>
-            <td></td>
+            <td class = "col"></td>
           </tr>
-          <tr>
-            <td><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %></td>
-            <td>注文履歴一覧リンク</td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col"></td>
+            <td class = "col"><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %></td>
+            <td class = "col"><%= link_to "注文履歴一覧", class: "btn btn-primary" %></td>
           </tr>
         <tbody>
       </table>
-    </div>
-  </div>
 </div>

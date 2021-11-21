@@ -9,6 +9,9 @@ class Customer::CustomersController < ApplicationController
     @customer = current_customer
   end
 
+  def out
+  end
+
   def update
     @customer = current_customer
     if current_customer.update(customer_params)

@@ -7,8 +7,10 @@
 <%= form_with url:admin_customer_path, model:@customer, local:true do |f| %>
 <div class = "container o-8column">
   <div class = "row">
+    <h4 class = "col-4 text-center" style = "background-color:lightgray"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
+  </div>
+  <div class = "row">
     <div class = "col-lg-7">
-      <h4><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h4>
       <table class = "table table-borderless">
         <tbody>
           <tr>

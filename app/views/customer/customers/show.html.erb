@@ -1,39 +1,60 @@
 <div class = "container o-8column">
+  <%= flash[:notice] %>
+
   <div class = "row">
-    <div class = "col">
-      <%= flash[:notice] %>
-      <h4>マイページ</h4>
-      <p><strong>登録情報</strong><%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-success" %></p>
-      <table class = "table table-bordered">
-        <tbody>
-          <tr>
-            <td>氏名</td>
-            <td><%= @customer.last_name + @customer.first_name %></td>
-          </tr>
-          <tr>
-            <td>カナ</td>
-            <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
-          </tr>
-          <tr>
-            <td>郵便番号</td>
-            <td><%= @customer.postal_code %></td>
-          </tr>
-          <tr>
-            <td>住所</td>
-            <td><%= @customer.address %></td>
-          </tr>
-          <tr>
-            <td>電話番号</td>
-            <td><%= @customer.phone_number %></td>
-          </tr>
-          <tr>
-            <td>メール</td>
-            <td><%= @customer.email %></td>
-          </tr>
-        </tbody>
-      </table>
-      <p>配送先一覧<%= link_to "一覧を見る", class: "btn btn-primary" %></p>
-      <p>注文履歴一覧<%= link_to "一覧を見る", class: "btn btn-primary" %></p>
-    </div>
+    <h4 class = "col-3 text-center" style = "background-color:lightgray">マイページ</h4>
   </div>
+
+
+  <table class = "table table-borderless">
+    <tr class = "row">
+       <td calss = "col-2"><strong>登録情報</strong></td>
+       <td calss = "col-4"><%= link_to '編集する', edit_customer_path(@customer), class: "btn btn-success" %></td>
+     </tr>
+  </table>
+
+
+
+   <table class = "table table-borderless" style = "width: 60%;">
+     <tbody>
+       <tr class = "row">
+        <td class = "col-3", style = "background-color:lightgray">氏名</td>
+         <td class = "col-9"><%= @customer.last_name + @customer.first_name %></td>
+       </tr>
+       <tr class = "row">
+         <td class = "col-3", style = "background-color:lightgray">カナ</td>
+         <td class = "col-9"><%= @customer.last_name_kana + @customer.first_name_kana %></td>
+       </tr>
+       <tr class = "row">
+        <td class = "col-3", style = "background-color:lightgray">郵便番号</td>
+         <td class = "col-9"><%= @customer.postal_code %></td>
+       </tr>
+       <tr class = "row">
+         <td class = "col-3", style = "background-color:lightgray">住所</td>
+         <td class = "col-9"><%= @customer.address %></td>
+       </tr>
+       <tr class = "row">
+         <td class = "col-3", style = "background-color:lightgray">電話番号</td>
+         <td class = "col-9"><%= @customer.phone_number %></td>
+       </tr>
+       <tr class = "row">
+         <td class = "col-3", style = "background-color:lightgray">メール</td>
+         <td class = "col-9"><%= @customer.email %></td>
+       </tr>
+    </tbody>
+  </table>
+
+  <table class = "table table-borderless">
+    <tr class = "row">
+       <td calss = "col-2"><strong>配送先一覧</strong></td>
+       <td calss = "col-4"><%= link_to '一覧を見る', class: "btn btn-primary" %></td>
+     </tr>
+   </table>
+
+   <table class = "table table-borderless">
+     <tr class = "row">
+       <td calss = "col-2"><strong>注文履歴一覧</strong></td>
+       <td calss = "col-4"><%= link_to '一覧を見る', class: "btn btn-primary" %></td>
+     </tr>
+   </table>
 </div>
