@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :items, only: [:index, :show]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
+    resources :cart_items, only:[:index, :create, :update, :destroy]
   end
 
   scope module: :customer do
