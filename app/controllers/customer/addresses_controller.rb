@@ -14,9 +14,9 @@ class Customer::AddressesController < ApplicationController
     address = Address.new(address_params)
     address.customer_id = current_customer.id
     if address.save
-      redirect_to addresses_path
+      redirect_to customer_addresses_path
     else
-      redirect_to items_path
+      redirect_to customer_items_path
     end
   end
   
@@ -28,16 +28,16 @@ class Customer::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-       redirect_to addresses_path
+       redirect_to customer_addresses_path
     else
-       redirect_to edit_address_path
+       redirect_to edit_customer_address_path
     end
   end
   
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    redirect_to addresses_path
+    redirect_to customer_addresses_path
   end
   
   private
