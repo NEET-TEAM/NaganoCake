@@ -3,24 +3,16 @@ class Customer::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.all
   
   end
   
   def create
-    @cart_item = @customer.cart_item.new(cart_item_params)
-    @current_item = CartItem.find_by(item_id: @cart_item.item_id, customer_id: 
-    @cart_item.customer_id)
-    # カートに同じ商品がなければ新規追加、あれば既存のデータと合算
-    if @current_item.blank?
-      @cart_item.save
-      redirect_to cart_items_path
-    else
-      @current_item.quantity += params[:quantity].to_i
-      new_quantity = @cart_item.quantity + @current_item.quantity
-      @current_item.update(quantity: new_quantity)
-      redirect_to cart_items_path
-    end
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
+    @cart_item.save
+    
+    redirect_to customer_cart_items_path
   end
   
   def update
@@ -48,6 +40,6 @@ class Customer::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.permit(:item_id, :quantity, :customer_id)
+    params.require(:cart_item).permit(:item_id, :quantity)
   end
 end

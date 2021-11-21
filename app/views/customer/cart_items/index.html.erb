@@ -16,6 +16,7 @@
         <%= attachment_image_tag cart_item.item, :image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
         <%= cart_item.item.name %>
       </td>
+      <td><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
     </tr>
     <% end %>
   </tbody>
