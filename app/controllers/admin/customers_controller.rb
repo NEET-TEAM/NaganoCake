@@ -24,7 +24,8 @@ class Admin::CustomersController < ApplicationController
   def withdraw
     @customer = Customer.find(params[:id])
     #statusのみをtrueにアップデート
-    @customer.update(status: true)
+    current_customer.update(is_deleted: true)
+    reset_session
     redirect_to root_path
   end
 
