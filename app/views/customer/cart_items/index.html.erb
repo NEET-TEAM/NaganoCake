@@ -28,8 +28,24 @@
       <td><%= (cart_item.quantity*cart_item.item.price*1.1).round.to_s(:delimited) %>円</td>
       <td><%= link_to "削除する", customer_cart_item_path(cart_item), method: :delete, class: "btn btn-outline-dark" %></td>
     </tr>
-    
+
   </tbody>
   <% sum += cart_item.quantity*cart_item.item.price*1.1 %>
   <% end %>
 </table>
+
+<div>
+  <%= link_to "買い物を続ける", customer_items_path, class: "btn btn-outline-dark" %>
+</div>
+<table>
+  <tr>
+    <th>合計金額</th>
+    <th><%= sum.round.to_s(:delimited) %>円</th>
+  </tr>
+</table>
+
+<div>
+  
+  <%= link_to "入力情報に進む", new_customer_order_path, class: "btn btn-outline-dark" %>
+  
+</div>

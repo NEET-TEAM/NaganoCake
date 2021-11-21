@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
     resources :cart_items, only:[:index, :create, :update, :destroy]
+    resources :order, only:[:new, :show, :create]
   end
 
   scope module: :customer do
