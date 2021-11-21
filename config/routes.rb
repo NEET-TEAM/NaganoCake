@@ -32,10 +32,10 @@ Rails.application.routes.draw do
 
 
   namespace :customer do
-    resources :items, only:[:index, :show]
+    resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
+    resources :cart_items, only:[:index, :create, :update, :destroy]
   end
-
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
