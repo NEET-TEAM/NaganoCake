@@ -1,0 +1,2 @@
+class OrderHistry < ApplicationRecord
+end
