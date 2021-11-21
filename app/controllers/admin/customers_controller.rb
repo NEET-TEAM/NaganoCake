@@ -15,9 +15,7 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-
-      redirect_to admin_customer_path
-
+      redirect_to admin_customer_path, notice: "内容を変更しました"
     else
       redirect_to edit_admin_customer_path(@customer)
     end
@@ -26,7 +24,8 @@ class Admin::CustomersController < ApplicationController
   def withdraw
     @customer = Customer.find(params[:id])
     #statusのみをtrueにアップデート
-    @customer.update(status: true)
+    current_customer.update(is_deleted: true)
+    reset_session
     redirect_to root_path
   end
 
