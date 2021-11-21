@@ -14,7 +14,7 @@ class Customer::AddressesController < ApplicationController
     if address.save
       redirect_to customer_addresses_path
     else
-      redirect_to items_path
+      redirect_to customer_items_path
     end
   end
   
