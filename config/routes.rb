@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
 
   scope module: :customer do
-    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
+    resources :customers, only: [:show, :edit, :update, :quit]
+    get 'customers/:id/out' => 'customers#out', as: 'out_customers'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customers'
 
   end
 
