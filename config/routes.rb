@@ -22,8 +22,6 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
-<<<<<<< HEAD
-=======
 
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :quit]
@@ -32,22 +30,13 @@ Rails.application.routes.draw do
 
   end
 
-
->>>>>>> origin/admin-customers
   namespace :customer do
     resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
     resources :cart_items, only:[:index, :create, :update, :destroy]
   end
 
-<<<<<<< HEAD
-  scope module: :customer do
-    resources :customers, only: [:show, :edit, :update, :out, :withdraw]
-  end
-   
-=======
 
->>>>>>> origin/admin-customers
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
