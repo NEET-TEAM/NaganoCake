@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-   resources :customers, only: [:index, :edit, :update, :show]
+   resources :customers, only: [:index, :edit, :update, :show] do
+     collection do
+        patch "withdraw"
+      end
+    end
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
   end
@@ -24,10 +28,12 @@ Rails.application.routes.draw do
 
 
   scope module: :customer do
-    resources :customers, only: [:show, :edit, :update, :quit]
-    get 'customers/:id/out' => 'customers#out', as: 'out_customers'
-    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customers'
-
+    resources :customers, only: [:show, :edit, :update] do
+      collection do
+        get "out"
+        patch "withdraw"
+      end
+    end
   end
 
 
