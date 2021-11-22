@@ -31,7 +31,7 @@ class Customer::SessionsController < Devise::SessionsController
     ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別 ＆　active_for_authentication?でcustomerのis_deleatedがfalseかどうか
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
     ## 【処理内容3】 is_deleteがtrueの場合、退会済なのでログイン画面にリダイレクト
-    　render new_customer_session_path
+    　redirect_to new_customer_session_path
     end
   end
 
