@@ -27,9 +27,14 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
-    resources :cart_items, only:[:index, :create, :update, :destroy]
+    resources :cart_items, only:[:index, :create, :update, :destroy] do
+      collection do
+        delete "destroy_all" 
+      end
+    end
+    resources :order, only:[:new, :show, :index, :create]
     
-    delete "cart_items/:id/destroy_all" => "cart_items#destroy_all"
+   
   end
 
   scope module: :customer do
