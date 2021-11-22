@@ -27,10 +27,13 @@ Rails.application.routes.draw do
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
     resources :cart_items, only:[:index, :create, :update, :destroy]
     resources :order, only:[:new, :show, :create]
+    
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
 
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :out, :withdraw]
+    
   end
    
 
