@@ -1,4 +1,4 @@
-<div id="container" class="mb-5 text-center text-light">
+<div id="container" class="mb-5 text-center text-dark">
   <div id="theTarget">
     <div class="image1">
       <h3 class="pt-5" id="top-massage">
@@ -24,7 +24,7 @@
           <h2><span class="under-line">新着商品</span></h2>
           <div class="row">
 
-            <% @item.each do |item| %>
+            <% @items.each do |item| %>
               <div class="col-sm-3">
                 <div class="card">
 
@@ -43,7 +43,7 @@
           </div>
 
           <div class="text-right">
-            <%= link_to "全ての商品を見る ＞", items_path %>
+            <%= link_to "全ての商品を見る ＞", customer_items_path %>
           </div>
         </div>
 
