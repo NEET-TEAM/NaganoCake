@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     end
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
+    resources :customers, only: [:index, :edit, :update, :show]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :items, only: [:show, :index, :new, :create, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_histories, only: [:update]
   end
 
   # 顧客用
@@ -36,13 +41,14 @@ Rails.application.routes.draw do
     end
   end
 
-
   namespace :customer do
     resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
     resources :cart_items, only:[:index, :create, :update, :destroy]
-  end
+    resources :order, only:[:new, :show, :create]
 
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
