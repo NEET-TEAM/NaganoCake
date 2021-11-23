@@ -5,7 +5,7 @@
           <% @items.each do |item| %>
           <div class="col-md-3">
             <div class="card">
-            <div><%= attachment_image_tag(item, :image, :fill, 200, 180)%></div>
+            <div><%= attachment_image_tag item, :image, format: 'jpeg', size: "246x190" %></div>
             <div><%= link_to item.name,customer_item_path(item) %></div>
             <div>￥<%= item.add_tax_price.to_s(:delimited)%></div>
             </div>
