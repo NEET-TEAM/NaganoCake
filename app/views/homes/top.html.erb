@@ -18,7 +18,7 @@
           <h2><span class="under-line">新着商品</span></h2>
           <div class="row">
 
-            <% @items.last(4).each do |item| %>
+            <% @items.last(4).reverse.each do |item| %>
               <div class="col-sm-3">
                 <div class="card">
 
