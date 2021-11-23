@@ -13,9 +13,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <span>Nagano Cake</span>
-          </a>
+          <a class="navbar-brand" href="/"></a>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
@@ -41,7 +39,8 @@
                   <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-info" %>
                 </li>
                 <li class="ml-2">
-                  <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-info" %>
+                  <%#注文履歴のルート作成後に変更%>
+                  <%= link_to "注文履歴一覧", admin_items_path, class: "btn btn-outline-info" %>
                 </li>
                 <li class="ml-2">
                   <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-info" %>
