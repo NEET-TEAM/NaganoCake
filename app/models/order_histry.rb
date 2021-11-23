@@ -6,6 +6,8 @@ class OrderHistry < ApplicationRecord
           制作中:2,#制作中
           制作完了:3,}#制作
     
+    belongs_to :order
+    belongs_to :item
     
     
 end

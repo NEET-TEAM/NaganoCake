@@ -11,7 +11,7 @@ class Customer::OrdersController < ApplicationController
   end
   
   def create
-    @customer = current_customer
+    customer = current_customer
     
       session[:order] = Order.new
       cart_items = current_customer.cart_items
@@ -30,9 +30,9 @@ class Customer::OrdersController < ApplicationController
       destination = params[:select].to_i
       
       if destination == 0
-        session[:order][:postal_code] = @customer.postal_code.to_i
-        session[:order][:address] = @customer.address
-        session[:order][:name] = @customer.full_name
+        session[:order][:postal_code] = customer.postal_code.to_i
+        session[:order][:address] = customer.address
+        session[:order][:name] = customer.full_name
         
       elsif destination == 1
         address = Address.find(params[:address_for_order])
@@ -61,7 +61,7 @@ class Customer::OrdersController < ApplicationController
     order.save
     
     if session[:new_address]
-      address = current_customer.address.new
+      address = current_customer.addresses.new
       address.postal_code = order.postal_code
       address.address = order.address
       address.name = order.name
@@ -69,15 +69,15 @@ class Customer::OrdersController < ApplicationController
       session[:new_address] = nil
     end
     
-    cart_items = current_customer.cart.items
+    cart_items = current_customer.cart_items
     cart_items.each do |cart_item|
-      order_status = OrderStatus.new
-      order_status.order_id = order.id
-      order_status.item_id = cart_item.item.id
-      order_status.quantity = cart_item.quantity
-      order_status.production_status = 0
-      order_status.price = (cart_item.item.add_tax_price).floor
-      order_status.save
+      order_histries = OrderHistry.new
+      order_histries.order_id = order.id
+      order_histries.item_id = cart_item.item.id
+      order_histries.quantity = cart_item.quantity
+      order_histries.production_status = 0
+      order_histries.price = (cart_item.item.add_tax_price).floor
+      order_histries.save
     end
     
     session.delete(:order)
