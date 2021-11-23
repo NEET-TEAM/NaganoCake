@@ -1,9 +1,10 @@
-<h2>商品詳細</h2>
+<div class="container">
+  <h2>商品詳細</h2>
 <div>
   <%# ジャンル検索を入れれたら入れる%>
   
   <div>
-  <%= attachment_image_tag @item, :image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
+  <%= attachment_image_tag @item, :image, format: "jpeg", fallback: "no_image.jpg", size: "300x300" %>
   </div>
   <div>
 
@@ -30,4 +31,5 @@
       <p>ご購入の際は<%= link_to "会員新規登録", new_cutomer_registration_path %>をお願い致します。</p>
     <% end %>
   </div>
+</div>
 </div>
