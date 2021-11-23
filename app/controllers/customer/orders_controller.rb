@@ -6,6 +6,10 @@ class Customer::OrdersController < ApplicationController
     @addresses = Address.where(customer_id: current_customer.id)
   end
   
+  def check
+    @cart_items = current_customer.cart_items
+  end
+  
   def create
     @customer = current_customer
     
@@ -26,12 +30,13 @@ class Customer::OrdersController < ApplicationController
       destination = params[:select].to_i
       
       if destination == 0
-        session[:order][:postal_code] = address.postal_code.to_i
-        session[:order][:addres] = addres.addres
-        session[:order][:name] = address.name
+        session[:order][:postal_code] = @customer.postal_code.to_i
+        session[:order][:address] = @customer.address
+        session[:order][:name] = @customer.full_name
         
       elsif destination == 1
         address = Address.find(params[:address_for_order])
+        session[:order][:postal_code] = address.postal_code.to_i
         session[:order][:address] = address.address
         session[:order][:name] = address.name
         
@@ -49,14 +54,44 @@ class Customer::OrdersController < ApplicationController
       end
   end
   
-  def check
-    @cart_items = current_customer.cart_items
+
+  
+  def thanks
+    order = Order.new(session[:order])
+    order.save
+    
+    if session[:new_address]
+      address = current_customer.address.new
+      address.postal_code = order.postal_code
+      address.address = order.address
+      address.name = order.name
+      address.save
+      session[:new_address] = nil
+    end
+    
+    cart_items = current_customer.cart.items
+    cart_items.each do |cart_item|
+      order_status = OrderStatus.new
+      order_status.order_id = order.id
+      order_status.item_id = cart_item.item.id
+      order_status.quantity = cart_item.quantity
+      order_status.production_status = 0
+      order_status.price = (cart_item.item.add_tax_price).floor
+      order_status.save
+    end
+    
+    session.delete(:order)
+    session[:order] = nil
+    cart_items.destroy_all
+    
   end
   
   def show
+    @order = Order.find(params[:id])
   end
   
   def index
+    @order = current_customer.orders
   end
   
   def edit

@@ -27,7 +27,7 @@
         <%#= if !@addresses.present? %>
         <%#  <p><%= link_to "配送先", customer_address_path が登録されていません</p> %>
         <%#<% else %>
-          <%= f.collection_select :address_id, Address.all, :id, :address, include_blank:"-- 選択してください --" %>
+          <%= f.collection_select :address_for_order, @addresses, :id, :address_all, include_blank:"-- 選択してください --" %>
         <%#<% end %>
       </div>
       <div>
