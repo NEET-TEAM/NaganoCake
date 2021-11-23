@@ -13,7 +13,7 @@
     <div>
       <div>
         <div>
-        <%= f.radio_button :select, 0, checked "checked" %>
+        <%= f.radio_button :select, 0, checked: "checked" %>
         <%= f.label :ご自身の住所 %>
         </div>
         <div>
@@ -24,16 +24,16 @@
       <div>
         <%= f.radio_button :select, 1 %>
         <%= f.label :配送先 %>
-        <%= if !@addresses.present? %>
-          <p><%= link_to "配送先", customer_address_path %>が登録されていません</p>
-        <% else %>
-          <%= form.collection_select :address_id, Address.all, :id, :address, include_blank:"-- 選択してください --" %>
-        <% end %>
+        <%#= if !@addresses.present? %>
+        <%#  <p><%= link_to "配送先", customer_address_path が登録されていません</p> %>
+        <%#<% else %>
+          <%= f.collection_select :address_id, Address.all, :id, :address, include_blank:"-- 選択してください --" %>
+        <%#<% end %>
       </div>
       <div>
         <%= f.radio_button :select, 2 %>
         <%= f.label :新しいお届け先 %>
-        <%= form_with url:customer_address_path, model:@address, local:true do |f| %>
+        <%= form_with url:customer_addresses_path, model:@address, local:true do |f| %>
         <table>
           <tr>
             <td>郵便番号(ハイフンなし)</td>
@@ -50,6 +50,10 @@
           </tr>
         </table>
         <% end %>
+        <div>
+          <%= f.submit "確認画面へ進む", class: "btn btn-outline-dark" %>
+        </div>
       </div>
     </div>
 </div>
+<% end %>

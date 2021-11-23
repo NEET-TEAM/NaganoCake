@@ -1,4 +1,4 @@
-class Customer::OrdresController < ApplicationController
+class Customer::OrdersController < ApplicationController
 
   def new
     @order = Order.new
@@ -46,8 +46,11 @@ class Customer::OrdresController < ApplicationController
         redirect_to customer_orders_check_path
       else
         redirect_to new_customer_order_path
-        
-    
+      end
+  end
+  
+  def check
+    @cart_items = current_customer.cart_items
   end
   
   def show
