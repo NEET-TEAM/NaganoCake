@@ -91,7 +91,7 @@ class Customer::OrdersController < ApplicationController
   end
   
   def index
-    @order = current_customer.orders
+    @orders = current_customer.orders
   end
   
   def edit
