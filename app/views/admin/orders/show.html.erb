@@ -13,7 +13,7 @@
         </tr>
         <tr class = "row">
           <td class = "col-2"><strong>注文日</strong></td>
-          <td class = "col"><%= @order.created_at %></td>
+          <td class = "col"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr class = "row">
           <td class = "col-2"><strong>配送先</strong></td>
@@ -73,7 +73,7 @@
         <table class = "table table-borderless">
           <tr>
             <td><strong>商品合計</strong></td>
-            <td><%= @order.total_payment %></td>
+            <td><%= (@order.total_payment - @order.shipping_cost) %></td>
           </tr>
           <tr>
             <td><strong>送料</strong></td>

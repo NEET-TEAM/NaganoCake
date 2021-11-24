@@ -16,13 +16,13 @@
         <% @orders.each do |orders| %>
         <tbody>
           <tr>
-            <td><%= link_to orders.created_at, admin_order_path(orders) %></td>
+            <td><%# link_to orders.ccreated_at.strftime('%Y/%m/%d'), admin_order_path(orders) %></td>
             <td><%= orders.full_name %></td>
-            <td></td>
-            <td><%# orders.order_status %></td>
+            <td><%= orders.order_histry.quantity %></td>
+            <td><%= orders.order.order_status %></td>
           </tr>
           <% end %>
-          <%# paginate @orders %>
+          <%= paginate @orders %>
         </tbody>
 
       </table>
