@@ -1,12 +1,8 @@
 class Admin::OrdersController < ApplicationController
 
-  def index
-    @orders = Order.page(params[:page]).reverse_order
-  end
 
   def show
-    @orders = Order.find(params[:id])
-    @order_histories = @order.order_histories
+    @order = Order.find(params[:id])
   end
 
   def update
@@ -21,7 +17,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   private
-  def orders_params
+  def order_params
     params.require(:order).permit(:order_status)
   end
 

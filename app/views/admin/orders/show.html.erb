@@ -9,25 +9,24 @@
       <table class = "table table-borderless">
         <tr class = "row">
           <td class = "col-2"><strong>購入者</strong></td>
-          <td class = "col"><%= @orders.customer_id.full_name %></td>
+          <td class = "col"><%= @order.order.customer.full_name %></td>
         </tr>
         <tr class = "row">
           <td class = "col-2"><strong>注文日</strong></td>
-          <td class = "col"><%= @orders.created_at %></td>
+          <td class = "col"><%= @order.order.created_at %></td>
         </tr>
         <tr class = "row">
           <td class = "col-2"><strong>配送先</strong></td>
-          <td class = "col"><%= @orders.postal_code %> <%= @orders.address %></br><%= @orders.name %></td>
+          <td class = "col"><%= @order.order.postal_code %> <%= @order.order.address %></br><%= @order.order.name %></td>
         </tr>
         <tr class = "row">
           <td class = "col-2"><strong>支払方法</strong></td>
-          <td class = "col"><%= @orders.payment %></td>
+          <td class = "col"><%= @order.order.payment %></td>
         </tr>
         <tr class = "row">
-          <%= form_with model:@orders, local:true do |f| %>
           <td class = "col-2"><strong>注文ステータス</strong></td>
           <td class = "col">
-  f.select :order_satus
+            <%= form_with(model: @order, url: admin_order_path, method: :patch ) do |f| %>
             <%= f.submit "更新", class: "btn btn-success" %>
             <% end %>
           </td>
@@ -48,23 +47,22 @@
               </tr>
             </thead>
 
-            <%= form_with model:@oreder_histries, local:true do |f| %>
-              <%= @orders_status.each do |order_histries| %>
+              <% @order.each do |order| %>
                 <tbody>
                   <tr>
-                    <td><%= order_histries.item.name %></td>
-                    <td><%= order_histries.item.price %></td>
-                    <td><%= order_histries.quantity%></td>
-                    <td><%= order_histries.item.price * order_histries.quantity %></td>
+                    <td><%= order.item.name %></td>
+                    <td><%= order.item.price %></td>
+                    <td><%= order.quantity%></td>
+                    <td><%= order.item.price * order.quantity %></td>
                     <td>
-                      <%= f.collection_select :order_status, Order.order_status.keys.to_a %>
+                      <%= form_with model:@order, local:true do |f| %>
+                      <%= f.collection_select :order_status, @order.order_status.keys.to_a %>
                       <%= f.submit "更新", class: "btn btn-success" %>
+                      <% end %>
                     </td>
                   </tr>
                 </tbody>
               <% end %>
-              <%= f.submit "更新", class: "btn btn-success" %>
-            <% end %>
           </table>
         </div>
 
@@ -74,15 +72,15 @@
         <table class = "table table-borderless">
           <tr>
             <td><strong>商品合計</strong></td>
-  <td><%= @order_histries.total_payment %></td>
+            <td><%= @order.order.total_payment %></td>
           </tr>
           <tr>
             <td><strong>送料</strong></td>
-            <td><%= @orders.shipping_cost %></td>
+            <td><%= @order.order.shipping_cost %></td>
           </tr>
           <tr>
             <td><strong>請求金額合計</strong></td>
-            <td><%= @order_histriew.total_payment %></td>
+            <td><%= @order.order.total_payment %></td>
           </tr>
         </table>
         </div>
