@@ -56,7 +56,7 @@
                     <td><%= order.quantity%></td>
                     <td><%= order.item.price * order.quantity %></td>
                     <td>
-                      <%= form_with(model: order, url: admin_order_order_history_path(order), method: :patch )  do |f| %>
+                      <%= form_with model: @order_histries, url: admin_order_order_histry_path(order), method: :patch, local: true  do |f| %>
                       <%= f.select :production_status, OrderHistry.production_statuses.keys.to_a %>
                       <%= f.submit "更新", class: "btn btn-success" %>
                       <% end %>
