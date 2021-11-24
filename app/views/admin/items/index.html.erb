@@ -1,16 +1,21 @@
-<h2>商品一覧</h2>
-<div class="plusmark">
-  <%= link_to image_tag('plusmark_icon.jpg', :size =>'25x25'), new_admin_item_path %>
-</div>
-  <table>
-    <thead>
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-      </tr>
+<div class = "container o-8column">
+  <div class = "row">
+    <h4 class = "col-2 text-center" style = "background-color:lightgray">商品一覧</h4>
+    <div class="plusmark">
+      <%= link_to image_tag('plusmark_icon.jpg', :size =>'25x25'), new_admin_item_path %>
+    </div>
+  <div class="container">
+    <table class="table">
+      <thead class="thead-light">
+        <div class ="row justify-content-center">
+          <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </div>
     </thead>
     <tbody>
       <% @items.each do |item| %>
@@ -30,3 +35,5 @@
       <% end %>
     </tbody>
   </table>
+  </div>
+  </div>
