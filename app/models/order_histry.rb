@@ -10,4 +10,5 @@ class OrderHistry < ApplicationRecord
           制作完了:3,
     }
 
+
 end
