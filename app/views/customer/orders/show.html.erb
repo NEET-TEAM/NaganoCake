@@ -1,8 +1,8 @@
-
-<div class="row ">
-  <div class="col-4">
-    <h2>注文履歴詳細</h2>
-      <div>注文情報</div>
+<div class="container">
+  <h2>注文履歴詳細</h2>
+    <div class="row ">
+      <div class="col-md-4">
+        <h4 class = "col-5 text-center" style = "background-color:lightgray">注文情報</h4>
         <table class="table table-bordered table-condensed">
           <tbody>
             <tr>
@@ -21,36 +21,36 @@
               <td>ステータス</td>
               <td><%= @order.order_status %></td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4">
+      <h4 class = "col-5 text-center" style = "background-color:lightgray">請求情報</h4>
+      <table class="table table-bordered table-condensed">
+        <tbody>
+          <tr>
+            <td>商品合計</td>
+            <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',' )%></td>
+          </tr>
+          <tr>
+            <td>配送料</td>
+            <td><%= @order.shipping_cost.to_s(:delimited, delimiter: ',' ) %></td>
+          </tr>
+          <tr>
+            <td>ご請求額</td>
+            <td><%= @order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+          </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-4">
-  <h4>請求情報</h4>
-    <table class="table table-bordered table-condensed">
-      <tbody>
-        <tr>
-          <td>商品合計</td>
-          <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',' )%></td>
-        </tr>
-        <tr>
-          <td>配送料</td>
-          <td><%= @order.shipping_cost.to_s(:delimited, delimiter: ',' ) %></td>
-        </tr>
-        <tr>
-          <td>ご請求額</td>
-          <td><%= @order.total_payment.to_s(:delimited, delimiter: ',') %></td>
-        </tr>
-      </tbody>
-    </table>
     </div>
     </div>
     
   <div class="row">
-    <div class="col-8">
-  <h4>注文内容</h4>
+    <div class="col-md-8">
+  <h4 class = "col-5 text-center" style = "background-color:lightgray">注文内容</h4>
     <table class="table table-bordered table-condensed">
       <thead>
         <tr>
@@ -71,7 +71,7 @@
     </table>
     </div>
     </div>
-
+</div>
   <div>
   <%= link_to "一覧に戻る", customer_orders_path, class: "btn btn-danger" %>
   </div>
