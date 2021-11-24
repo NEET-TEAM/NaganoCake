@@ -1,4 +1,4 @@
-class Customer::OrdresController < ApplicationController
+class Customer::OrdersController < ApplicationController
 
   def new
     @order = Order.new
@@ -6,8 +6,12 @@ class Customer::OrdresController < ApplicationController
     @addresses = Address.where(customer_id: current_customer.id)
   end
   
+  def check
+    @cart_items = current_customer.cart_items
+  end
+  
   def create
-    @customer = current_customer
+    customer = current_customer
     
       session[:order] = Order.new
       cart_items = current_customer.cart_items
@@ -26,12 +30,13 @@ class Customer::OrdresController < ApplicationController
       destination = params[:select].to_i
       
       if destination == 0
-        session[:order][:postal_code] = address.postal_code.to_i
-        session[:order][:addres] = addres.addres
-        session[:order][:name] = address.name
+        session[:order][:postal_code] = customer.postal_code.to_i
+        session[:order][:address] = customer.address
+        session[:order][:name] = customer.full_name
         
       elsif destination == 1
         address = Address.find(params[:address_for_order])
+        session[:order][:postal_code] = address.postal_code.to_i
         session[:order][:address] = address.address
         session[:order][:name] = address.name
         
@@ -46,14 +51,47 @@ class Customer::OrdresController < ApplicationController
         redirect_to customer_orders_check_path
       else
         redirect_to new_customer_order_path
-        
+      end
+  end
+  
+
+  
+  def thanks
+    order = Order.new(session[:order])
+    order.save
+    
+    if session[:new_address]
+      address = current_customer.addresses.new
+      address.postal_code = order.postal_code
+      address.address = order.address
+      address.name = order.name
+      address.save
+      session[:new_address] = nil
+    end
+    
+    cart_items = current_customer.cart_items
+    cart_items.each do |cart_item|
+      order_histries = OrderHistry.new
+      order_histries.order_id = order.id
+      order_histries.item_id = cart_item.item.id
+      order_histries.quantity = cart_item.quantity
+      order_histries.production_status = 0
+      order_histries.price = (cart_item.item.add_tax_price).floor
+      order_histries.save
+    end
+    
+    session.delete(:order)
+    session[:order] = nil
+    cart_items.destroy_all
     
   end
   
   def show
+    @order = Order.find(params[:id])
   end
   
   def index
+    @order = current_customer.orders
   end
   
   def edit
