@@ -43,12 +43,12 @@ class Customer::CartItemsController < ApplicationController
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
-    redirect_to cart_items_path
+    redirect_to customer_cart_items_path
   end
   
   def destroy_all
     current_customer.cart_items.destroy_all
-    redirect_to request.referer
+    redirect_to customer_cart_items_path
   end
   
   

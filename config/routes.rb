@@ -13,8 +13,14 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :edit, :update, :show]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:show, :index, :new, :create, :edit, :update]
+<<<<<<< HEAD
     resources :orders, only: [:index, :show, :update]
     resources :order_histories, only: [:update]
+=======
+    resources :ordres, only: [:show, :update] do
+      resources :order_histries, only: [:update]
+    end
+>>>>>>> origin/orders
   end
 
   # 顧客用
@@ -35,10 +41,16 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :items, only:[:show, :index]
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
-    resources :cart_items, only:[:index, :create, :update, :destroy]
-    resources :order, only:[:new, :show, :create]
+    resources :cart_items, only:[:index, :create, :update, :destroy] do
+      collection do
+        delete "destroy_all" 
+      end
+    end
     
-    delete "cart_items/destroy_all" => "cart_items#destroy_all"
+    get "orders/check" => "orders#check"
+    post "orders/check" => "orders#check"
+    get "orders/thanks" => "orders#thanks"
+    resources :orders, only:[:show, :index, :create, :new]
   end
 
 
