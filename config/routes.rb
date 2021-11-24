@@ -13,14 +13,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :edit, :update, :show]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:show, :index, :new, :create, :edit, :update]
-<<<<<<< HEAD
-    resources :orders, only: [:index, :show, :update]
-    resources :order_histories, only: [:update]
-=======
     resources :ordres, only: [:show, :update] do
       resources :order_histries, only: [:update]
     end
->>>>>>> origin/orders
   end
 
   # 顧客用
