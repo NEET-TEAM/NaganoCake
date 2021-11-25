@@ -12,15 +12,20 @@
         <th>注文詳細</th>
       </tr>
     </thead>
-    <%= @orders.each do |order| %>
+    <% @orders.each do |order| %>
     <tbody>
       <tr>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= order.address %></td>
-        <td><%= order.item.name %></td>
+        <td>
+          <% order.order_histries.each do |order_histry| %>
+          <%= order_histry.item.name %>
+          <% end %>
+        </td>
         <td><%= order.total_payment %></td>
         <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", customer_orders_path(order), class: "btn btn-primary" %></td>
+        <td><%= link_to "表示する", customer_order_path(order), class: "btn btn-primary" %></td>
       </tr>
     </tbody>
+    <% end %>
   </table>
