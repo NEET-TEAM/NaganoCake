@@ -13,7 +13,7 @@ before_action :authenticate_customer!
     if address.save
       redirect_to customer_addresses_path
     else
-      redirect_to customer_items_path
+      redirect_to customer_addresses_path
     end
   end
 
