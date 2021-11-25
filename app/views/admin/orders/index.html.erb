@@ -18,11 +18,11 @@
           <tr>
             <td><%= link_to orders.created_at.strftime('%Y/%m/%d'), admin_order_path(orders) %></td>
             <td><%= orders.full_name %></td>
-            <td><%# orders.order_histries.quantity %></td>
-            <td><%# orders.order.order_status %></td>
+            <td><%= orders.order_history.quantity %></td>
+            <td><%= orders.order.order_status %></td>
           </tr>
           <% end %>
-          <%# paginate @orders %>
+          <%= paginate @orders %>
         </tbody>
 
       </table>
