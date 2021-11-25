@@ -6,7 +6,6 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_histries = OrderHistry.find_by(order_id: @order.id)
   end
 
   def update
