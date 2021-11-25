@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
 
-    
+    before_action :admin_customer, only: :withdraw
 
   def index
     @customers = Customer.page(params[:page])
