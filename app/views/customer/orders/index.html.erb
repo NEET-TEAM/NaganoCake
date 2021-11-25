@@ -1,3 +1,6 @@
+
+<div class="container">
+  
 <h4>注文履歴一覧</h4>
 
   <table class="table">
@@ -15,10 +18,13 @@
     <tbody>
       <tr>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= order.address %></td>
         <td>
-          <% order.order_histries.each do |order_histry| %>
-          <%= order_histry.item.name %>
+          〒<%= order.postal_code %></br>
+          <%= order.address %>
+        </td>
+        <td>
+          <% order.order_histries.each do |order_history| %>
+            <%= order_history.item.name %></br>
           <% end %>
         </td>
         <td><%= order.total_payment %></td>
@@ -28,3 +34,9 @@
     </tbody>
     <% end %>
   </table>
+ </div>
+ 
+ 
+  
+ 
+   

@@ -32,7 +32,7 @@
               <td class="align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
               <%= form_with url:customer_cart_items_path, model: cart_item, local:true do |f| %>
               <td class="align-middle mx-auto">
-                  <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {class: "col-auto rounded"} %>
+                  <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {<div class="ml-5 field pt-5">} %>
                   <%= f.submit "変更",class: "btn btn-outline-dark" %>
               </td>
               <% end %>

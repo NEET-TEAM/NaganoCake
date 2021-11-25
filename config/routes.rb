@@ -10,10 +10,17 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+   resources :customers, only: [:index, :edit, :update, :show] do
+     collection do
+        patch "withdraw"
+      end
+    end
+   resources :genres, only: [:index, :create, :edit, :update]
+   resources :items, only: [:show, :index, :new, :create, :edit, :update]
     resources :customers, only: [:index, :edit, :update, :show]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:show, :index, :new, :create, :edit, :update]
-    resources :ordres, only: [:show, :update] do
+    resources :orders, only: [:index, :show, :update] do
       resources :order_histries, only: [:update]
     end
   end
@@ -27,10 +34,12 @@ Rails.application.routes.draw do
 
 
   scope module: :customer do
-    resources :customers, only: [:show, :edit, :update, :quit]
-    get 'customers/:id/out' => 'customers#out', as: 'out_customers'
-    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customers'
-
+    resources :customers, only: [:show, :edit, :update] do
+      collection do
+        get "out"
+        patch "withdraw"
+      end
+    end
   end
 
   namespace :customer do
@@ -38,17 +47,17 @@ Rails.application.routes.draw do
     resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
     resources :cart_items, only:[:index, :create, :update, :destroy] do
       collection do
-        delete "destroy_all" 
+        delete "destroy_all"
       end
     end
-    
+
     get "orders/check" => "orders#check"
     post "orders/check" => "orders#check"
     get "orders/thanks" => "orders#thanks"
     resources :orders, only:[:show, :index, :create, :new]
+
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
   end
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
