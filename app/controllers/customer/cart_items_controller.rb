@@ -22,6 +22,7 @@ class Customer::CartItemsController < ApplicationController
       
     elsif
       @cart_item.save
+      redirect_to customer_cart_items_path
         
     else 
       @item = Item.find_by(id:@cart_item.item.id)

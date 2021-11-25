@@ -1,18 +1,18 @@
 <% @sum=0 %>
 <div class= "container">
   <div class= "row py-3 px-5">
-
     <div class= "text-start design">
       <h2 style= "background-color:lightgray">ショッピングカート</h2>
     </div>
     <div class= "ml-auto">
       <%= link_to "カートを空にする", destroy_all_customer_cart_items_path, method: :delete, class: "btn btn-outline-danger" %>
+    </div>
   </div>
-</div>
 
 <div class= "container">
   <div class= "row mx-auto">
     <div class= "col-12 text-start">
+
       <table class= "table table-bordered">
         <thead style= "color: #FFF; font-weight: bold; background:#00BCD4;">
           <th>商品名</th>
@@ -21,28 +21,32 @@
           <th>小計</th>
           <th></th>
         </thead>
-
         <tbody>
-          <% @cart_items.each do |cart_item| %>
-            <tr>
-              <td>
-                <%= attachment_image_tag cart_item.item, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80" %>
-                <%= cart_item.item.name %>
-              </td>
-              <td class="align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
-              <%= form_with url:customer_cart_items_path, model: cart_item, local:true do |f| %>
-              <td class="align-middle mx-auto">
-                  <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {class: "col-auto rounded"} %>
-                  <%= f.submit "変更",class: "btn btn-outline-dark" %>
-              </td>
+        <% @cart_items.each do |cart_item| %>
+
+          <tr>
+            <td>
+              <%= attachment_image_tag cart_item.item, :image, format: "jpeg", fallback: "no_image.jpg", size: "80x80" %>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
+            
+            <td class="align-middle mx-auto">
+              <%= form_with model: cart_item, url: customer_cart_item_path(cart_item), method: :patch, local: true do |f| %>
+              <div>
+                <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {class: "col-auto rounded"} %>
+                <%= f.submit "変更",class: "btn btn-outline-dark" %>
+              </div>
               <% end %>
-              <td class="align-middle "><%= (cart_item.quantity*cart_item.item.price*1.1).round.to_s(:delimited) %>円</td>
-              <td class="align-middle"><%= link_to "削除する", customer_cart_item_path(cart_item), method: :delete, class: "btn btn-outline-dark" %></td>
-            </tbody>
-              <% @sum += cart_item.quantity*cart_item.item.price*1.1 %>
-            </tr>
-          <% end %>
-        </table>
+            </td>
+            <td class="align-middle "><%= (cart_item.quantity*cart_item.item.price*1.1).round.to_s(:delimited) %>円</td>
+            <td class="align-middle"><%= link_to "削除する", customer_cart_item_path(cart_item), method: :delete, class: "btn btn-outline-dark" %></td>
+            <% @sum += cart_item.quantity*cart_item.item.price*1.1 %>
+          </tr>
+         
+        <% end %>
+        </tbody>
+      </table>
 
         <div class= "row py-3 px-4">
           <div class= "col-sm-6 ">
@@ -51,12 +55,12 @@
           <table class= "table ml-auto table-bordered col-3" >
             <tbody>
               <th style= "color: #FFF; font-weight: bold; background:#00BCD4;">合計金額</th>
-             　<td><%= @sum.round.to_s(:delimited) %>円</td>
+              <td><%= @sum.round.to_s(:delimited) %>円</td>
             </tbody>
           </table>
         </div>
+      </div>
     </div>
-  </div>
 
   <div class= "row py-3">
     <div class="col-12 text-center">

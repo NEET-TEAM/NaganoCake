@@ -1,59 +1,87 @@
-<h2>注文情報入力</h2>
+<div class ="container mt-5">
+  <%= flash[:alert] %>
+  <div class ="row mt-5"></div>
+    <h3>注文情報入力</h3>
+  </div>
+</div>
+
 <%= form_with url:customer_orders_path, model:@orders, local:true do |f| %>
-<div>
-  <h3>支払方法</h3>
-  <div class="form-group">
-    <%= f.radio_button :payment, 0, checked: true %>
-    <%= f.label :クレジットカード %>
-    <%= f.radio_button :payment, 1 %>
-    <%= f.label :銀行振込 %>
+<div class="container">
+  <div class="form-group row mt-4">
+    <h4 class="col-sm-3">
+      <strong>支払方法<strong>
+    </h4>
+  </div>
+  <%#　縦並び指定を後で入れる　%>
+  <div class="form-group row">
+    <h5 class="col-sm-3 mx-5">
+      <%= f.radio_button :payment, 0, checked: true %>
+      <%= f.label :クレジットカード %>
+    </h5>
+    <h5 class="col-sm-3 mx-5">
+      <%= f.radio_button :payment, 1 %>
+      <%= f.label :銀行振込 %>
+    </h5>
   </div>
 
-  <h3>お届け先</h3>
-    <div>
-      <div>
-        <div>
-        <%= f.radio_button :select, 0, checked: "checked" %>
-        <%= f.label :ご自身の住所 %>
-        </div>
-        <div>
-        <%= @customer.address %>
+  <div class="form-group row">
+    <h4 class="col-sm-2">
+      <strong>お届け先</strong>
+    </h4>
+  </div>
+  <div class="form-group row mb-5">
+    <h5 class="col-sm-3 mx-5">
+      <%= f.radio_button :select, 0, checked: "checked" %>
+      <%= f.label :ご自身の住所 %>
+    </h5>
+    <div class="col-sm-9">
+      <h5 class="offset-sm-1 col-sm-6">〒<%= @customer.postal_code %>
+        <%= @customer.address %></br>
         <%= @customer.full_name %>
-        </div>
-      </div>
-      <div>
-        <%= f.radio_button :select, 1 %>
-        <%= f.label :配送先 %>
-        <%#= if !@addresses.present? %>
-        <%#  <p><%= link_to "配送先", customer_address_path が登録されていません</p> %>
-        <%#<% else %>
-          <%= f.collection_select :address_for_order, @addresses, :id, :address_all, include_blank:"-- 選択してください --" %>
-        <%#<% end %>
-      </div>
-      <div>
-        <%= f.radio_button :select, 2 %>
-        <%= f.label :新しいお届け先 %>
-
-        <table>
-          <tr>
-            <td>郵便番号(ハイフンなし)</td>
-            <td><%= f.text_field :postal_code, autofocus: true %></td>
-          </tr>
-          <tr>
-            <td>住所</td>
-            <td><%= f.text_area :address %></td>
-          </tr>
-          <tr>
-            <td>宛名</td>
-            <td><%= f.text_field :name %></td>
-
-          </tr>
-        </table>
-
-        <div>
-          <%= f.submit "確認画面へ進む", class: "btn btn-outline-dark" %>
-        </div>
+      </h5>
+    </div>
+  </div>
+  
+  <div class="form-group row mb-5">
+    <h5 class="col-sm-3 mx-5">
+      <%= f.radio_button :select, 1 %>
+      <%= f.label :配送先 %>
+      <%#= if !@addresses.present? %>
+      <%#  <p><%= link_to "配送先", customer_address_path が登録されていません</p> %>
+      <%#<% else %>
+      <%= f.collection_select :address_for_order, @addresses, :id, :address_all, include_blank:"-- 選択してください --" %>
+      <%#<% end %>
+    </h5>
+  </div>
+  <div class="form-group row mb-5">
+    <h5 class="col-sm-3 mx-5">
+      <%= f.radio_button :select, 2 %>
+      <%= f.label :新しいお届け先 %>
+    </h5>
+    <div class="form-group row">
+      <div class="input-group">
+        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :郵便番号(ハイフンなし) %></div>
+        <div class="col-8 input-group-append"><%= f.text_field :postal_code, autofocus: true %></div>
       </div>
     </div>
+    
+    <div class="form-group row">
+      <div class="input-group">
+        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :住所 %></div>
+        <div class="col-8 input-group-append"><%= f.text_area :address %></div>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="input-group">
+        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :宛名 %></div>
+        <div class="col-8 input-group-append"><%= f.text_field :name %></div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit "確認画面へ進む", class: "btn btn-outline-dark" %>
+  </div>
 </div>
 <% end %>

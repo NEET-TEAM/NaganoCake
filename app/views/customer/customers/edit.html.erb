@@ -11,9 +11,8 @@
       <div class = "row">
         <h4 class = "col-4 text-center" style = "background-color:lightgray">会員情報の変更</h4>
       </div>
-
+      <%= form_with model:@customer, local:true do |f| %>
       <table class = "table table-borderless">
-        <%= form_with model:@customer, local:true do |f| %>
         <tbody>
           <tr class = "row">
             <td class = "col-2">氏名</td>
@@ -55,8 +54,8 @@
             <td class = "col-4"><%= link_to "退会する", out_customers_path(@customer), class: "btn btn-primary" %></td>
           </tr>
         </tbody>
-         <% end %>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
