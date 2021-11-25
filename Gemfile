@@ -59,3 +59,7 @@ end
 
   gem 'will_paginate', '3.1.6'
   gem 'bootstrap-will_paginate', '1.0.0'
+
+  gem 'bootstrap', '~> 4.5'
+  gem 'jquery-rails'
+  gem 'font-awesome-sass', '~> 5.13'

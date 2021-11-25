@@ -13,6 +13,8 @@ Rails.application.routes.draw do
    resources :customers, only: [:index, :edit, :update, :show]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :items, only: [:show, :index, :new, :create, :edit, :update]
+   resources :ordres
+  
   end
 
   # 顧客用
@@ -22,18 +24,23 @@ Rails.application.routes.draw do
   sessions: 'customer/sessions'
   }
 
+  namespace :customer do
+    resources :items, only:[:show, :index]
+    resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
+    resources :cart_items, only:[:index, :create, :update, :destroy] do
+      collection do
+        delete "destroy_all" 
+      end
+    end
+    resources :order, only:[:new, :show, :index, :create]
+    
+   
+  end
 
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update, :out, :withdraw]
     
   end
-
-
-  namespace :customer do
-    resources :items, only:[:index, :show]
-    resources :addresses, only:[:new, :index, :create, :edit, :update, :destroy]
-  end
-
    
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
