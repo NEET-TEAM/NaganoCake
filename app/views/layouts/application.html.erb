@@ -9,86 +9,17 @@
 
 
   <body class="d-flex flex-column vh-100">
-    
     <main class="d-flex flex-column vh-100">
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <div class="head-logo">
-            <%= link_to image_tag('naganocake_logo.jpg', :size =>'160x120'), '/' %>
-          </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav lists-right">
-
-                <% if customer_signed_in? %>
-
-                  <li class= "nav-item">
-
-                   <button class="btn btn-default"> <%= link_to "マイページ", customer_path(current_customer.id), class: "link" %></button>
-                  </li>
-
-                  <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "商品一覧", customer_items_path, class: "link" %></button>
-                  </li>
-
-                  <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "カート", customer_items_path, class: "link" %></button>
-                  </li>
-
-                  <li class="nav-item">
-                    <button class="btn btn-default"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "link" %></button>
-
-                  </li>
-
-                <% elsif admin_signed_in? %>
-                  <li class= items>
-                    <button class="btn btn-default"><%= link_to '商品一覧', admin_items_path, class: "link" %></button>
-                  </li>
-
-                  <li class= customers>
-
-                    <button class="btn btn-default"><%= link_to '会員一覧', admin_customers_path, class: "link" %></button>
-
-                  </li>
-
-                  <li class=orders>
-                    <button class="btn btn-default"><%= link_to '注文履歴一覧', admin_items_path, class: "link" %></button>
-                  </li>
-
-                  <li class=genres>
-                    <button class="btn btn-default"><%= link_to 'ジャンル一覧', admin_genres_path, class: "link" %></button>
-                  </li>
-
-                  <li class=logout>
-                    <button class="btn btn-default"><%= link_to "ログアウト",destroy_admin_session_path, method: :delete, class: "link" %></button>
-                  </li>
-
-                <% else %>
-                  <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "About", about_path, class: "link" %></button>
-                  </li>
-
-                  <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "商品一覧", customer_items_path, class: "link" %></button>
-                  </li>
-
-                  <li class= "nav-item">
-                    <button class="btn btn-default"><%= link_to "新規登録", new_customer_registration_path, class: "link" %></button>
-                  </li>
-
+      <header>
+        
+                  
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <%= link_to image_tag("naganocake-logo3", size: "150x100"), root_path, class: "mt-2" %>
 
           <div>
             <ul class="navbar-nav ml-auto">
-
               <% if customer_signed_in? %>
-
                 <li class="ml-3">
                   <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-outline-info" %>
                 </li>
@@ -101,30 +32,24 @@
                 <li class="ml-3 mr-1">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-info" %>
                 </li>
-              <% elsif admin_signed_in? %>
+                <% elsif admin_signed_in? %>
                 <li class="ml-3">
                   <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-info" %>
                 </li>
                 <li class="ml-3">
                   <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-info" %>
                 </li>
-<<<<<<< HEAD
                 <li class="ml-3">
-                  <%= link_to "注文履歴一覧", admin_items_path, class: "btn btn-outline-info" %>
-=======
-
-                <li class="ml-3">
-                  <%= link_to "注文履歴一覧", admin_items_path, class: "btn btn-outline-info" %>
-
->>>>>>> admin-address
+                  <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-info" %>
                 </li>
                 <li class="ml-3">
+                  <%#注文履歴のルート作成後に変更%>
                   <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-info" %>
                 </li>
                 <li class="ml-3 mr-1">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-info" %>
                 </li>
-              <% else %>
+                <% else %>
                 <li class="ml-3">
                   <%= link_to "About", about_path, class: "btn btn-outline-info" %>
                 </li>
@@ -136,8 +61,6 @@
                 </li>
                 <li class="ml-3 mr-1">
                   <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-info" %>
-
-
                 </li>
               <% end %>
             </ul>
@@ -153,20 +76,12 @@
               </li>
             </ul>
           </div>
-
           </div>
-
         </div>
-
-
       </nav>
-
-
     </header>
-
     <main>
-
       <%= yield %>
     </main>
-  </body>
+    </body>
 </html>

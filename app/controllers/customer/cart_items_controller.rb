@@ -27,6 +27,7 @@ class Customer::CartItemsController < ApplicationController
       @item = Item.find_by(id:@cart_item.item.id)
       @gernes = Genre.all
       @cart_items = CartItem.new
+      flash[:notice] = '個数を選択してください'
       redirect_to customer_items_path
     end
   end

@@ -9,56 +9,55 @@
   <div class = "row">
     <h4 class = "col-4 text-center" style = "background-color:lightgray"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
   </div>
-  <div class = "row">
-    <div class = "col-lg-7">
       <table class = "table table-borderless">
         <tbody>
-          <tr>
-            <td>会員ID</td>
-            <td><%= @customer.id %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-2">会員ID</td>
+            <td class = "col-3"><%= @customer.id %></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td>氏名</td>
-            <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
-            <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %></td>
+          <tr class = "row">
+            <td class = "col-2">氏名</td>
+            <td class = "col-3"><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
+            <td class = "col-3"><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %></td>
           </tr>
-          <tr>
-            <td>カナ</td>
-            <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
-            <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
+          <tr class = "row">
+            <td class = "col-2">カナ</td>
+            <td class = "col-3"><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
+            <td class = "col-3"><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
           </tr>
-          <tr>
-            <td>郵便番号</td>
-            <td><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-2">郵便番号</td>
+            <td class = "col-3"><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td>住所</td>
-            <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所" %></td>
+          <tr class = "row">
+            <td class = "col-2">住所</td>
+            <td class = "col-3"><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所", :size => "54" %></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td>電話番号</td>
-            <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-2">電話番号</td>
+            <td class = "col-3"><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td>メール</td>
-            <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-2">メール</td>
+            <td class = "col-3"><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td>ステータス</td>
-            <td>
-              <%= f.radio_button :is_delited, "false" %>有効
-              <%= f.radio_button :is_delited, "true" %>無効
+          <tr class = "row">
+            <td class = "col-2">ステータス</td>
+            <td class = "col-3">
+              <%= f.radio_button :is_deleted, "false" %>有効
+              <%= f.radio_button :is_deleted, "true" %>無効
             </td>
-            <td></td>
+            <td class = "col-3"></td>
           </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
-            <td></td>
+          <tr class = "row">
+            <td class = "col-2"></td>
+            <td class = "col-3"><%= f.submit "変更内容を保存", class: "btn btn-success" %></td>
+            <td class = "col-3"></td>
           </tr>
         </tbody>
       </table>
