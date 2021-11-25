@@ -1,0 +1,77 @@
+<div class="container">
+  <h2>注文履歴詳細</h2>
+    <div class="row ">
+      <div class="col-md-4">
+        <h4 class = "col-5 text-center" style = "background-color:lightgray">注文情報</h4>
+        <table class="table table-bordered table-condensed">
+          <tbody>
+            <tr>
+              <td>注文日</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td>配送先</td>
+              <td><%= @order.address %></td>
+            </tr>
+            <tr>
+              <td>支払方法</td>
+              <td><%= @order.payment %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td><%= @order.order_status %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4">
+      <h4 class = "col-5 text-center" style = "background-color:lightgray">請求情報</h4>
+      <table class="table table-bordered table-condensed">
+        <tbody>
+          <tr>
+            <td>商品合計</td>
+            <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited, delimiter: ',' )%></td>
+          </tr>
+          <tr>
+            <td>配送料</td>
+            <td><%= @order.shipping_cost.to_s(:delimited, delimiter: ',' ) %></td>
+          </tr>
+          <tr>
+            <td>ご請求額</td>
+            <td><%= @order.total_payment.to_s(:delimited, delimiter: ',') %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    
+  <div class="row">
+    <div class="col-md-8">
+  <h4 class = "col-5 text-center" style = "background-color:lightgray">注文内容</h4>
+    <table class="table table-bordered table-condensed">
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <% @order.order_histries.each do |order_history| %>
+        <tbody>
+          <td><%= order_history.item.name %></td>
+          <td><%= order_history.item.add_tax_price.to_s(:delimited, delimiter: ',' )  %></td>
+          <td><%= order_history.quantity %></td>
+          <td><%= (order_history.item.add_tax_price * order_history.quantity).to_s(:delimited, delimiter: ',' )%></td>
+        </tbody>
+      <% end %>
+    </table>
+    </div>
+    </div>
+</div>
+  <div>
+  <%= link_to "一覧に戻る", customer_orders_path, class: "btn btn-danger" %>
+  </div>
