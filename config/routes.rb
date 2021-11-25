@@ -10,12 +10,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
   
-  # 顧客用
-  # URL /customer/sign_in ...
-  devise_for :customer, skip: [:passwords,], controllers: {
-  registrations: "customer/registrations",
-  sessions: 'customer/sessions'
-  }
+  
 
   namespace :admin do
    resources :customers, only: [:index, :edit, :update, :show] do
@@ -33,7 +28,12 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  # 顧客用
+  # URL /customer/sign_in ...
+  devise_for :customer, skip: [:passwords,], controllers: {
+  registrations: "customer/registrations",
+  sessions: 'customer/sessions'
+  }
 
 
   scope module: :customer do
