@@ -1,14 +1,10 @@
 class Customer::AddressesController < ApplicationController
 
+before_action :authenticate_customer!
   
-  def new
-    @address = Address.new
-    @addresses = Address.all
-  end
-    
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.address
   end
   
   def create
