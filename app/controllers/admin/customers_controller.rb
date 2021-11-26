@@ -5,7 +5,7 @@ class Admin::CustomersController < ApplicationController
     
 
   def index
-    @customers = Customer.page(params[:page])
+    @customers = Customer.page(params[:page]).reverse_order.per(5)
   end
 
   def show
