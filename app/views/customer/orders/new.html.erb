@@ -1,7 +1,7 @@
 <div class ="container mt-5">
   <%= flash[:alert] %>
-  <div class ="row mt-5"></div>
-    <h3>注文情報入力</h3>
+  <div class ="row mt-5">
+    <h3 style="background-color:lightgray">注文情報入力</h3>
   </div>
 </div>
 
@@ -24,12 +24,13 @@
     </h5>
   </div>
 
+
   <div class="form-group row">
     <h4 class="col-sm-2">
       <strong>お届け先</strong>
     </h4>
   </div>
-  <div class="form-group row mb-5">
+  <div class="form-group row">
     <h5 class="col-sm-3 mx-5">
       <%= f.radio_button :select, 0, checked: "checked" %>
       <%= f.label :ご自身の住所 %>
@@ -42,7 +43,7 @@
     </div>
   </div>
   
-  <div class="form-group row mb-5">
+  <div class="form-group row">
     <h5 class="col-sm-3 mx-5">
       <%= f.radio_button :select, 1 %>
       <%= f.label :配送先 %>
@@ -53,35 +54,28 @@
       <%#<% end %>
     </h5>
   </div>
-  <div class="form-group row mb-5">
+  <div class="form-group row">
     <h5 class="col-sm-3 mx-5">
       <%= f.radio_button :select, 2 %>
       <%= f.label :新しいお届け先 %>
     </h5>
-    <div class="form-group row">
-      <div class="input-group">
-        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :郵便番号（ハイフンなし） %></div>
-        <div class="col-8 input-group-append"><%= f.text_field :postal_code, autofocus: true %></div>
-      </div>
+    <table class="table table-borderless offset-sm-1 ">
+      <tr>
+        <td style="width: 25%">郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postal_code, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_area :address %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+    </table>
+    <div class="mx-auto">
+      <%= f.submit "確認画面へ進む", class: "btn btn-success btn-lg" %>
     </div>
-    
-    <div class="form-group row">
-      <div class="input-group">
-        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :住所 %></div>
-        <div class="col-8 input-group-append"><%= f.text_area :address %></div>
-      </div>
-    </div>
-    
-    <div class="form-group row">
-      <div class="input-group">
-        <div class="offset-sm-1 col-sm-3 input-group-append"><%= f.label :宛名 %></div>
-        <div class="col-8 input-group-append"><%= f.text_field :name %></div>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <%= f.submit "確認画面へ進む", class: "btn btn-outline-dark" %>
   </div>
 </div>
 <% end %>
