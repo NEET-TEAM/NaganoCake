@@ -11,9 +11,10 @@ class Admin::ItemsController < ApplicationController
       @item = Item.new(item_params)
       if @item.save
       #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
+        flash.now[:notice] = "登録しました"
          redirect_to admin_items_path
       else
-        render "new"
+        redirect_to request.referer,alert:"新規登録できませんでした"
       end
     end
 
