@@ -1,6 +1,8 @@
+<font color = "red"><%= flash[:alert] %></font>
+
 <div class="container">
   <h4 class = "text-left"><span style = "background-color:lightgray">商品新規登録</span></h4>
-    <%= form_with url:admin_items_path, model: @item, local:true do |f| %>
+  <%= form_with url:admin_items_path, model: @item, local:true do |f| %>
   <div class="container">
     <div class="form-group">
       <%= f.label :商品画像 %>

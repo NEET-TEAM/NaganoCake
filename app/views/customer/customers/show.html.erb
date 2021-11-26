@@ -1,5 +1,6 @@
 <div class = "container o-8column">
-  <font color = "red"><%= flash[:notice] %></font>
+  <font color = "success"><%= flash[:notice] %></font>
+  
 
   <div class = "row">
     <h4 class = "col-3 text-center" style = "background-color:lightgray">マイページ</h4>
@@ -54,7 +55,7 @@
    <table class = "table table-borderless">
      <tr class = "row">
        <td calss = "col-2"><strong>注文履歴一覧</strong></td>
-       <td calss = "col-4"><%= link_to '一覧を見る',customer_orders_path(@customer), class: "btn btn-primary" %></td>
+       <td calss = "col-4"><%= link_to '一覧を見る',customer_orders_path, class: "btn btn-primary" %></td>
      </tr>
    </table>
 </div>

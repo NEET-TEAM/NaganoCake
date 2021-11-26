@@ -11,8 +11,9 @@ class Admin::ItemsController < ApplicationController
       @item = Item.new(item_params)
       if @item.save
       #後でifを使って登録成功時と失敗時にリダイレクト先を分ける
-         redirect_to admin_items_path
+         redirect_to admin_items_path, notice: "新しい商品が登録されました"
       else
+        flash.now[:alert] = '商品の新規登録に失敗しました。'
         render "new"
       end
     end
