@@ -7,11 +7,11 @@
     </div>
     <div class= "ml-auto">
       <%= link_to "カートを空にする", destroy_all_customer_cart_items_path, method: :delete, class: "btn btn-outline-danger" %>
+    </div>
   </div>
-</div>
 
 <div class= "container">
-  <div class= "row mx-auto">
+  <div class= "row">
     <div class= "col-12 text-start">
       <table class= "table table-bordered">
         <thead style= "color: #FFF; font-weight: bold; background:#00BCD4;">
@@ -30,12 +30,15 @@
                 <%= cart_item.item.name %>
               </td>
               <td class="align-middle"><%= cart_item.item.add_tax_price.to_s(:delimited) %>円</td>
-              <%= form_with url:customer_cart_items_path, model: cart_item, local:true do |f| %>
-              <td class="align-middle mx-auto">
-                  <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {class: "col-auto rounded"} %>
-                  <%= f.submit "変更",class: "btn btn-outline-dark" %>
+              <td class="align-middle">
+                <%= form_with model: cart_item, url: customer_cart_item_path(cart_item), method: :patch, local: true do |f| %>
+                <div>
+                <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], {}, {class: "col-auto rounded"} %>
+                <%= f.submit "変更",class: "btn btn-outline-dark" %>
+                </div>
+                <% end %>
               </td>
-              <% end %>
+
               <td class="align-middle "><%= (cart_item.quantity*cart_item.item.price*1.1).round.to_s(:delimited) %>円</td>
               <td class="align-middle"><%= link_to "削除する", customer_cart_item_path(cart_item), method: :delete, class: "btn btn-outline-dark" %></td>
             </tbody>
