@@ -94,7 +94,7 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.page(params[:page]).per(10)
+    @orders = Order.page(params[:page]).reverse_order.per(7)
   end
 
 
