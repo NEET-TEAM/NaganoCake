@@ -1,38 +1,68 @@
 <font color = "red"><%= flash[:alert] %></font>
-
 <div class="container">
-  <h4 class = "text-left"><span style = "background-color:lightgray">商品新規登録</span></h4>
-  <%= form_with url:admin_items_path, model: @item, local:true do |f| %>
-  <div class="container">
-    <div class="form-group">
-      <%= f.label :商品画像 %>
-      <%= f.attachment_field :image %>
-    </div>
-    <div class="form-group">
-      <%= f.label :商品名 %>
-      <%= f.text_field :name %>
-    </div>
-    <div class="form-group">
-      <%= f.label :商品説明 %>
-      <%= f.text_area :explanation %>
-    </div>
-    <div class="form-group">
-      <%= f.label :ジャンル %>
-  　   <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank:"-- 選択してください --" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :税抜価格 %>
-      <%= f.text_field :price %>円
-    </div>
-    <div class="form-group">
-      <%= f.label :販売ステータス %>
-    <div>
-      <%= f.radio_button :sold_out, true %>
-      <%= f.label :販売中 %>
-      <%= f.radio_button :sold_out, false %>
-      <%= f.label :販売停止中 %>
-    </div>
-    <%= f.submit '新規登録', class: "btn btn-success" %>
-  <% end %>
+  <div class="row my-5">
+    
+      <h2 class="col-3 text-center" style="background-color:lightgray">商品新規登録</h2>
+
   </div>
+ 
+    <%= form_with url:admin_items_path, model: @item, local:true do |f| %>
+
+  <table class="col-6 mx-auto">
+    <tr>
+      <td>
+        <%= f.label :商品画像 %>
+      </td>
+      <td>
+        <%= f.attachment_field :image %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :商品名 %>
+      </td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+      <td>
+        <%= f.label :商品説明 %>
+      </td>
+      <td>
+        <%= f.text_area :explanation %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :ジャンル %>
+      </td>
+      <td>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank:"-- 選択してください --" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :税抜価格 %>
+      </td>
+      <td>
+        <%= f.text_field :price %>円
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label :販売ステータス %>
+      </td>
+      <td>
+        <%= f.radio_button :sold_out, true %>
+        <%= f.label :販売中 %>
+        <%= f.radio_button :sold_out, false %>
+        <%= f.label :販売停止中 %>
+      </td>
+    </tr>
+  </table>
+  <div class="col-4 mt-2 mx-auto">
+    <%= f.submit '新規登録', class: "btn btn-success" %>
+  </div>
+  <% end %>
+  
 </div>
