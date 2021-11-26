@@ -1,11 +1,7 @@
 class Customer::AddressesController < ApplicationController
 
-
-  def new
-    @address = Address.new
-    @addresses = current_customer.addresses
-  end
-
+before_action :authenticate_customer!
+  
   def index
     @address = Address.new
     @addresses = current_customer.addresses
@@ -17,7 +13,7 @@ class Customer::AddressesController < ApplicationController
     if address.save
       redirect_to customer_addresses_path
     else
-      redirect_to customer_items_path
+      redirect_to customer_addresses_path
     end
   end
 

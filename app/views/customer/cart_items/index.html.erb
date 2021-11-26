@@ -23,18 +23,18 @@
 <% @sum=0 %>
 <div class= "container">
   <div class= "row py-3 px-5">
+
     <div class= "text-start design">
       <h2 style= "background-color:lightgray">ショッピングカート</h2>
     </div>
     <div class= "ml-auto">
       <%= link_to "カートを空にする", destroy_all_customer_cart_items_path, method: :delete, class: "btn btn-outline-danger" %>
-    </div>
   </div>
+</div>
 
 <div class= "container">
   <div class= "row mx-auto">
     <div class= "col-12 text-start">
-
       <table class= "table table-bordered">
         <thead style= "color: #FFF; font-weight: bold; background:#00BCD4;">
           <th>商品名</th>
@@ -77,12 +77,12 @@
           <table class= "table ml-auto table-bordered col-3" >
             <tbody>
               <th style= "color: #FFF; font-weight: bold; background:#00BCD4;">合計金額</th>
-              <td><%= @sum.round.to_s(:delimited) %>円</td>
+             　<td><%= @sum.round.to_s(:delimited) %>円</td>
             </tbody>
           </table>
         </div>
-      </div>
     </div>
+  </div>
 
   <div class= "row py-3">
     <div class="col-12 text-center">
