@@ -1,4 +1,6 @@
 class Admin::OrderHistriesController < ApplicationController
+    
+    before_action :authenticate_admin!
 
      def update
        order_histry = OrderHistry.find(params[:id])

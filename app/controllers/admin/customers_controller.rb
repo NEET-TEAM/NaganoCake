@@ -1,5 +1,7 @@
 class Admin::CustomersController < ApplicationController
-
+  
+  
+    before_action :authenticate_admin!
     before_action :admin_customer, only: :withdraw
 
   def index
