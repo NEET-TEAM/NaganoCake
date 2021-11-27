@@ -1,0 +1,63 @@
+<% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <% @customer.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<div class = "container o-8column">
+  <div class = "row">
+    <div class = "col-lg-7">
+
+      <div class = "row">
+        <h4 class = "col-4 text-center" style = "background-color:lightgray">会員情報の変更</h4>
+      </div>
+      <%= form_with model:@customer, local:true do |f| %>
+      <table class = "table table-borderless">
+        
+        <tbody>
+          <tr class = "row">
+            <td class = "col-2">氏名</td>
+            <td class = "col-4"><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
+            <td class = "col-4"><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">カナ</td>
+            <td class = "col-4"><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
+            <td class = "col-4"><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
+          </tr class = "row">
+          <tr class = "row">
+            <td class = "col-2">郵便番号</td>
+            <td class = "col-3"><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">住所</td>
+            <td class = "col-3"><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所", :size => "46" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">電話番号</td>
+            <td class = "col-3"><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">メール</td>
+            <td class = "col-3"><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2"></td>
+            <td class = "col-4">
+               <div class="form-group">
+                 <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+               </div>
+            </td>
+            <td class = "col-4"><%= link_to "退会する", out_customers_path(@customer), class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+         
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

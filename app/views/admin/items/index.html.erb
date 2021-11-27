@@ -1,0 +1,43 @@
+
+
+<div class = "container o-8column">
+  <div class = "row">
+    <h4 class = "text-center"><span style = "background-color:lightgray">商品一覧</span></h4>
+    <div class="ml-auto">
+      <%= link_to image_tag('plusmark_icon.jpg', :size =>'25x25'), new_admin_item_path %>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table">
+      <thead class="thead-light">
+        <div class ="row justify-content-center">
+          <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </div>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <td><%= item.price %>円</td>
+          <td><%= item.genre.name %></td>
+          <td>
+            <% if item.sold_out? %>
+              <span>販売中</span>
+            <% else %>
+              <span>販売停止中</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  </div>

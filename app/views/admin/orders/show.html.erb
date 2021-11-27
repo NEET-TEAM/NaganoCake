@@ -1,0 +1,91 @@
+<div class = "container">
+  <div class = "row">
+
+      <h4 class = "col-3 text-center" style = "background-color:lightgray">注文詳細</h4>
+
+  </div>
+
+
+      <table class = "table table-borderless">
+        <tr class = "row">
+          <td class = "col-2"><strong>購入者</strong></td>
+          <td class = "col"><%= @order.customer.full_name %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"><strong>注文日</strong></td>
+          <td class = "col"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"><strong>配送先</strong></td>
+          <td class = "col">〒<%= @order.postal_code %> <%= @order.address %></br><%= @order.name %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"><strong>支払方法</strong></td>
+          <td class = "col"><%= @order.payment %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"><strong>注文ステータス</strong></td>
+          <td class = "col">
+            <%= form_with(model: @order, url: admin_order_path, method: :patch ) do |f| %>
+            <%= f.select :order_status, Order.order_statuses.keys.to_a %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+
+
+      <div class = "row">
+        <div class = "col-8">
+          <table class = "table table-hover">
+             <thead class = "thead-light">
+              <tr>
+                <th>商品名</th>
+                <th>単価（税込）</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th>制作ステータス</th>
+              </tr>
+            </thead>
+
+              <% @order.order_histries.each do |order| %>
+                <tbody>
+                  <tr>
+                    <td><%= order.item.name %></td>
+                    <td><%= order.item.add_tax_price %></td>
+                    <td><%= order.quantity%></td>
+                    <td><%= order.item.add_tax_price * order.quantity %></td>
+                    <td>
+                      <%= form_with model: order, url: admin_order_order_histry_path(@order, order), method: :patch, local: true  do |f| %>
+                      <%= f.select :production_status, OrderHistry.production_statuses.keys.to_a %>
+                      <%# f.select :prodection_status, OrderHistry.production_statuses.keys.map{|k| [I18n.t("enums.order_histry.production_status.#{k}"),k]} %>
+                      <%= f.submit "更新", class: "btn btn-success" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+              <% end %>
+          </table>
+        </div>
+
+        <div class = "col-1"></div>
+
+        <div class = "col-3">
+        <table class = "table table-borderless">
+          <tr>
+            <td><strong>商品合計</strong></td>
+            <td><%= (@order.total_payment - @order.shipping_cost) %></td>
+          </tr>
+          <tr>
+            <td><strong>送料</strong></td>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <td><strong>請求金額合計</strong></td>
+            <td><%= @order.total_payment %></td>
+          </tr>
+        </table>
+        </div>
+      </div>
+
+</div>
