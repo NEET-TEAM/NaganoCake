@@ -1,21 +1,42 @@
-<h2>商品詳細</h2>
+<div class="container my-5">
+  <div class="row mx-auto">
+
+      <%= attachment_image_tag @item, :image, format: "jpeg", fallback: "no_image.jpg", size: "400x300" %>
+
+
+  <div class="ml-5">
+      <h1 class="mt-3"><%= @item.name %></h1>
+
+      <p class="h4 mt-2 pb-5"><%= @item.explanation %></p>
 <div>
-  <%# ジャンル検索を入れれたら入れる%>
-  
-  <div>
-  <%= attachment_image_tag @item, :image, format: "jpeg", fallback: "no_image.jpg", size: "100x100" %>
+      <p class="h3 pt-5">￥<%= @item.add_tax_price.to_s(:delimited) %><span style="font-size:15px"> (税込) </span></p>
+
+      <% if customer_signed_in? %>
+      <% if @item.sold_out? %>
+        <%= form_with url:customer_cart_items_path, model: @cart_items, local:true do |f| %>
+        <div class="input-group pt-5">
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :quantity, options_for_select((1..20).to_a), {include_blank: "個数選択"}, {class: "form-control rounded"} %>
+          <%= f.submit "カートに入れる", class: "ml-2 btn-outline-dark" %>
+        </div>
+        <% end %>
+      <% else %>
+        <div class="btn btn-outline-dark">売切れ</div>
+      <% end %>
+    <% else %>
+      <p>ご購入の際は<%= link_to "会員新規登録", new_customer_registration_path %>をお願い致します。</p>
+    <% end %>
+
+    </div>
   </div>
-  <div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div><%= @item.name %></div>
-    
+</div>
+  <div class="row py-5">
 
-    <div><%= @item.explanation %></div>
-    
-    <div>￥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</div>
-
-    
-    <%#<%= link_to "カートに入れる", ,class: "btn-outline-dark" %>
-  
+    <%= link_to "一覧に戻る", customer_items_path, class: "btn btn-outline-dark py-2 mx-auto" %>
   </div>
 </div>

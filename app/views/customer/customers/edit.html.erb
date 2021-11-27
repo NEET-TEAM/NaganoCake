@@ -1,48 +1,63 @@
-<h4>会員情報の変更</h4>
 <% if @customer.errors.any? %>
   <%= @customer.errors.count %>件のエラーが発生しました
   <% @customer.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
 <% end %>
-<%= form_with model:@customer, local:true do |f| %>
-<table class = "table">
-  <tbody>
-    <tr>
-      <th>氏名</th>
-      <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
-      <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %></td>
-    </tr>
-    <tr>
-      <th>カナ</th>
-      <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
-      <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
-    </tr>
-    <tr>
-      <th>郵便番号</th>
-      <td><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>住所</th>
-      <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所" %></td>
-    </tr>
-    <tr>
-      <th>電話番号</th>
-      <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>メール</th>
-      <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<div class="form-group">
-  <%= f.submit "編集内容を保存", class: "btn btn-primary" %>
-  編集内容を保存
-</div>
-<%= link_to "退会する", class: "btn btn-primary" %>
+<div class = "container o-8column">
+  <div class = "row">
+    <div class = "col-lg-7">
 
-<% end %>
+      <div class = "row">
+        <h4 class = "col-4 text-center" style = "background-color:lightgray">会員情報の変更</h4>
+      </div>
+      <%= form_with model:@customer, local:true do |f| %>
+      <table class = "table table-borderless">
+        
+        <tbody>
+          <tr class = "row">
+            <td class = "col-2">氏名</td>
+            <td class = "col-4"><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓" %></td>
+            <td class = "col-4"><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">カナ</td>
+            <td class = "col-4"><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"姓カナ" %></td>
+            <td class = "col-4"><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"名カナ" %></td>
+          </tr class = "row">
+          <tr class = "row">
+            <td class = "col-2">郵便番号</td>
+            <td class = "col-3"><%= f.text_field :postal_code, autofocus: true, id:"inputName", placeholder:"郵便番号" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">住所</td>
+            <td class = "col-3"><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"住所", :size => "46" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">電話番号</td>
+            <td class = "col-3"><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"電話番号" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2">メール</td>
+            <td class = "col-3"><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"メールアドレス" %></td>
+            <td class = "col-3"></td>
+          </tr>
+          <tr class = "row">
+            <td class = "col-2"></td>
+            <td class = "col-4">
+               <div class="form-group">
+                 <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+               </div>
+            </td>
+            <td class = "col-4"><%= link_to "退会する", out_customers_path(@customer), class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+         
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

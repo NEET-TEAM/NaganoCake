@@ -1,21 +1,52 @@
-<h2>ログイン</h2>
+<div class = "container" style = "margin: 80px;">
+  <h2 class = "col-2 text-center" style = "background-color:lightgray">ログイン</h2>
+  <div class = "row" style = "padding: 30px;">
+    <div class = "col text-center">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <table class = "table table-borderless">
+        <tr class = "row">
+          <td class = "col-1"></td>
+          <td class = "col-4 text-center" style = "background-color:lightgray">会員の方はこちらからログイン</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"></td>
+          <td class = "col-2 text-left"><%= f.label :メールアドレス %></td>
+          <td class = "col-6 text-left"><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "50" %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"></td>
+          <td class = "col-2 text-left"><%= f.label :パスワード %></td>
+          <td class = "col-6 text-left"><%= f.password_field :password, autocomplete: "current-password", :size => "50" %></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"></td>
+          <td class = "col-2"></td>
+          <td class = "col-6 text-left"><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-1"></td>
+          <td class = "col-4 text-center" style = "background-color:lightgray">会員登録がお済みでない方</td>
+          <td></td>
+        </tr>
+        <tr class = "row">
+          <td class = "col-2"></td>
+          <td class = "col-4"><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<div>会員登録がお済みでない方</div>
-<div><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</div>
+</div>

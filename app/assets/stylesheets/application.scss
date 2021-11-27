@@ -13,7 +13,15 @@
  *= require_tree .
  *= require_self
  */
-
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+.sign_btn {
+  width: 160px;
+}
+
+.size-input-address { 
+ width: 27em; 
+}

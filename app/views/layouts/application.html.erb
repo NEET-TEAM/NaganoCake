@@ -7,49 +7,49 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
 
-    <header>
-
+  <body class="d-flex flex-column vh-100">
+    <main class="d-flex flex-column vh-100">
+      <header>
+        
+                  
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">
-            <span>Nagano Cake</span>
-          </a>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <%= link_to image_tag("naganocake-logo3", size: "150x100"), root_path, class: "mt-2" %>
+
+          <div>
             <ul class="navbar-nav ml-auto">
-
               <% if customer_signed_in? %>
-
-                <li class="ml-2">
-                  <%= link_to "マイページ", customer_customer_path, class: "btn btn-outline-info" %>
+                <li class="ml-3">
+                  <%= link_to "マイページ", customer_path(current_customer.id), class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2">
+                <li class="ml-3">
                   <%= link_to "商品一覧", customer_items_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2">
+                <li class="ml-3">
                   <%= link_to "カート", customer_cart_items_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2 mr-2">
+                <li class="ml-3 mr-1">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-info" %>
                 </li>
-              <% elsif admin_signed_in? %>
-                <li class="ml-2">
+                <% elsif admin_signed_in? %>
+                <li class="ml-3">
                   <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2">
+                <li class="ml-3">
                   <%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2">
-                  <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-info" %>
+
+                <li class="ml-3">
+                  <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2">
+                <li class="ml-3">
                   <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-info" %>
                 </li>
-                <li class="ml-2 mr-2">
+                <li class="ml-3 mr-1">
                   <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-info" %>
                 </li>
-              <% else %>
+                <% else %>
                 <li class="ml-3">
                   <%= link_to "About", about_path, class: "btn btn-outline-info" %>
                 </li>
@@ -64,15 +64,26 @@
                 </li>
               <% end %>
             </ul>
+            
+
+            
+            <ul class="nav-item mt-2 ml-auto list-unstyled">
+              <li class="nav-item ml-3">
+                <form class="align-items-end d-flex ml-auto">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-dark ml-1 mr-1" type="submit">
+                    <i class="fas fa-search">Search</i>
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </div>
           </div>
         </div>
       </nav>
-
     </header>
-
     <main>
-
       <%= yield %>
     </main>
-  </body>
+    </body>
 </html>
